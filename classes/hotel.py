@@ -8,9 +8,15 @@ class Hotel(Gclass):
     sortkey = ''
     autonumber = 0
     nkey = 1
-    def __init__(self, codigo, localizacao, nquartos, contacto, nfuncionarios):
+    
+    att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios']
+    header = 'Hotel'
+    des = ['Codigo','Nome','Localização','Número de quartos','Contacto','Número de funcionários']
+    
+    def __init__(self, codigo, nome, localizacao, nquartos, contacto, nfuncionarios):
         super().__init__()  
         self._codigo = codigo
+        self._nome = nome
         self._nquartos = nquartos
         self._localizacao = localizacao
         self._contacto = contacto
@@ -21,6 +27,9 @@ class Hotel(Gclass):
     @property 
     def codigo(self):
         return self._codigo
+    @property 
+    def nome(self):
+        return self._nome
     @property 
     def nquartos(self):
         return self._nquartos

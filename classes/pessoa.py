@@ -8,6 +8,12 @@ class Pessoa(Gclass):
     sortkey = ''
     autonumber = 0
     nkey = 1
+    
+    att = ['_codigo','_nome','_idade','_morada','_email','_telemovel','_pais']
+    header = 'Pessoa'
+    des = ['Codigo','Nome','Idade','Morada','Email','Telemovel','Pais']
+    
+    
     def __init__(self, codigo, nome, idade, morada, email, telemovel, pais):
         super().__init__()  
         self._codigo = codigo

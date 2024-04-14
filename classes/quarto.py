@@ -9,6 +9,11 @@ class Quarto(Gclass):
     sortkey = ''
     autonumber = 0
     nkey = 1
+    
+    att = ['_cod_quarto','_cod_hotel','_preco_noite','_estado_reserva']
+    header = 'Quarto'
+    des = ['Codigo do quarto','Codigo do hotel','Preço por noite','Estado da reserva']
+    
     def __init__(self, cod_quarto, cod_hotel, preco_noite, estado_reserva):
         super().__init__()  
         self._cod_quarto = cod_quarto
