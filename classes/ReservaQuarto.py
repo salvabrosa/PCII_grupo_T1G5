@@ -8,6 +8,7 @@ class ReservaQuarto(Gclass):
     sortkey = ''
     autonumber = 0
     nkey = 1
+    
     def __init__(self, cod_reserva, diaComeco, diaFim, estado_reserva, cod_quarto, cod_cliente):
         super().__init__()  
         self._cod_reserva = cod_reserva
