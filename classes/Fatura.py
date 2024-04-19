@@ -9,6 +9,10 @@ class Fatura(Gclass):
     autonumber = 0
     nkey = 1
     
+    att = ['_cod_fatura','_dataemissao','_cod_cliente']
+    header = 'Fatura'
+    des = ['Codigo','Data Emissão','cod_cliente']
+    
     def __init__(self, cod_fatura, dataemissao, cod_cliente):
         super().__init__()  
         self._cod_fatura = cod_fatura

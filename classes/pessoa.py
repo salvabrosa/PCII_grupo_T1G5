@@ -52,5 +52,7 @@ class Pessoa(Gclass):
     def __str__(self):
         return f'{self.nome};{self.idade};{self.morada};{self.email};{self.telemovel};{self.pais}'
 
-    
+P1 = Pessoa('12345','João Caires',39, 'Porto','joaocaires@hotel.pt','933222111','Portugal')
+print(P1)
+print(P1.telemovel)
    
