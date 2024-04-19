@@ -43,8 +43,8 @@ class Hotel(Gclass):
     def nfuncionarios(self):
         return self._nfuncionarios
     
-H1 = Hotel('H1','Sana','Porto',300,'969333111',60)
-print (H1.localizacao)
-print (H1.contacto)
+# H1 = Hotel('H1','Sana','Porto',300,'969333111',60)
+# print (H1.localizacao)
+# print (H1.contacto)
 
 

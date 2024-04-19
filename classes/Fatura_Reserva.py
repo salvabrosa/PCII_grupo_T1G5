@@ -36,3 +36,5 @@ class Fatura_Reserva(Gclass):
     def nreservas(self):
         return self._nreservas
     
+# fatRes=Fatura_Reserva('fat1', 'rq1', '1000', '1')
+# print(fatRes)

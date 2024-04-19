@@ -34,3 +34,6 @@ class Fatura(Gclass):
     
     def pagar(self):
         pass
+
+# fat=Fatura('fat1', '1-01-2024', '12345')
+# print(fat)

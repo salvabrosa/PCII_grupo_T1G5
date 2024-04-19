@@ -36,5 +36,5 @@ class Quarto(Gclass):
     def estado_reserva(self):
         return self._estado_reserva
     
-Q100 = Quarto('A100','H1',50,True)
-print(Q100)
+# Q100 = Quarto('A100','H1',50,Ativo)
+# print(Q100)
