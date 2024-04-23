@@ -6,7 +6,7 @@ class Pessoa(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    autonumber = 0
+    auto_number = 0
     nkey = 1
     
     att = ['_codigo','_nome','_idade','_morada','_email','_telemovel','_pais']
@@ -23,8 +23,9 @@ class Pessoa(Gclass):
         self._email = email
         self._telemovel = telemovel
         self._pais = pais
-        Pessoa.lst.append(self)
+        
         Pessoa.obj[codigo] = self
+        Pessoa.lst.append(codigo)
     
     @property 
     def codigo(self):

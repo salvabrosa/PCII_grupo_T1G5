@@ -10,7 +10,7 @@ from classes.fatura_reserva import Fatura_Reserva
 from classes.fatura import Fatura
 from classes.pessoa import Pessoa
 from classes.userlogin import Userlogin
-#from classes.userlogin import Userlogin (para Adicionar mais)
+#from classes.userlogin import Userlogin 
 
 app = Flask(__name__)
 

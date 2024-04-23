@@ -6,7 +6,7 @@ class Hotel(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    autonumber = 0
+    auto_number = 0
     nkey = 1
     
     att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios']
@@ -21,8 +21,10 @@ class Hotel(Gclass):
         self._localizacao = localizacao
         self._contacto = contacto
         self._nfuncionarios = nfuncionarios
-        Hotel.lst.append(self)
+        
         Hotel.obj[codigo] = self
+        Hotel.lst.append(codigo)
+        
         
     @property 
     def codigo(self):

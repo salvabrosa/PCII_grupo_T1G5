@@ -6,7 +6,7 @@ class Fatura(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    autonumber = 0
+    auto_number = 0
     nkey = 1
     
     att = ['_cod_fatura','_dataemissao','_cod_cliente']
@@ -19,8 +19,8 @@ class Fatura(Gclass):
         self._dataemissao = dataemissao
         self._cod_cliente = cod_cliente
         
-        Fatura.lst.append(self)
         Fatura.obj[cod_fatura] = self
+        Fatura.lst.append(cod_fatura)
         
     @property 
     def cod_fatura(self):

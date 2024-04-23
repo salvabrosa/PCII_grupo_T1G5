@@ -6,7 +6,7 @@ class Fatura_Reserva(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    autonumber = 0
+    auto_number = 0
     nkey = 2
     
     att = ['_cod_fatura','_cod_reserva','_preco','_nreservas']
@@ -20,8 +20,8 @@ class Fatura_Reserva(Gclass):
         self._preco = preco
         self._nreservas = nreservas
         
-        Fatura_Reserva.lst.append(self)
-        Fatura_Reserva.obj[cod_reserva] = self
+        Fatura_Reserva.obj[cod_fatura] = self
+        Fatura_Reserva.lst.append(cod_fatura)
         
     @property 
     def cod_fatura(self):
