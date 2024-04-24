@@ -25,7 +25,7 @@ class Quarto(Gclass):
         
     @property 
     def codigo(self):
-        return self.codigo
+        return self._codigo
     @property 
     def cod_hotel(self):
         return self._cod_hotel
