@@ -15,7 +15,7 @@ from classes.userlogin import Userlogin
 app = Flask(__name__)
 
 Hotel.read(filename + 'hotel.db')
-# Product.read(filename + 'hotel.db')
+Quarto.read(filename + 'hotel.db')
 # CustomerOrder.read(filename + 'hotel.db')
 # OrderProduct.read(filename + 'hotel.db')
 Userlogin.read(filename + 'hotel.db')

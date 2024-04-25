@@ -3,7 +3,7 @@ from datafile import filename
 from classes.hotel import Hotel
 
 
-Hotel.read(filename + 'hotel.db')
+Hotel.read(filename + 'hotel.db')  
 
 cname = "Hotel"
 cl = eval(cname)
