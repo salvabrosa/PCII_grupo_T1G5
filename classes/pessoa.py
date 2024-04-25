@@ -14,7 +14,7 @@ class Pessoa(Gclass):
     des = ['Codigo','Nome','Idade','Morada','Email','Telemovel','Pais']
     
     
-    def __init__(self, codigo, nome, idade, morada, email, telemovel, pais):
+    def __init__(self, codigo, nome, idade, morada, email, telemovel, pais, usergroup='user'):
         super().__init__()  
         self._codigo = codigo
         self._nome = nome
@@ -23,6 +23,7 @@ class Pessoa(Gclass):
         self._email = email
         self._telemovel = telemovel
         self._pais = pais
+        self._usergroup = usergroup
         
         Pessoa.obj[codigo] = self
         Pessoa.lst.append(codigo)
@@ -48,12 +49,31 @@ class Pessoa(Gclass):
     @property 
     def pais(self):
         return self._pais
+    @property 
+    def usergroup(self):
+        return self._usergroup
     
-  
-    def __str__(self):
-        return f'{self.nome};{self.idade};{self.morada};{self.email};{self.telemovel};{self.pais}'
-
-# P1 = Pessoa('12345','João Caires',39, 'Porto','joaocaires@hotel.pt','933222111','Portugal')
-# print(P1)
-# print(P1.telemovel)
-   
+    @codigo.setter 
+    def codigo(self, codigo):
+        self._codigo = codigo 
+    @nome.setter 
+    def nome(self, nome):
+        self._nome = nome 
+    @idade.setter 
+    def idade(self, idade):
+        self._idade = idade 
+    @morada.setter 
+    def morada(self, morada):
+        self._morada = morada 
+    @email.setter 
+    def email(self, email):
+        self._email = email 
+    @telemovel.setter 
+    def telemovel(self, telemovel):
+        self._telemovel = telemovel 
+    @pais.setter 
+    def pais(self, pais):
+        self._pais = pais
+    @usergroup.setter 
+    def usergroup(self,usergroup):
+        pass
