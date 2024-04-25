@@ -1,4 +1,5 @@
 from classes.gclass import Gclass
+from classes.hotel import Hotel
 import datetime
 
 class Quarto(Gclass):
@@ -14,15 +15,19 @@ class Quarto(Gclass):
     des = ['Codigo do quarto','Codigo do hotel','Preço por noite','Estado da reserva']
     
     def __init__(self, codigo, cod_hotel, preco_noite, estado_reserva):
-        super().__init__()  
-        self._codigo = codigo
-        self._cod_hotel = cod_hotel
-        self._preco_noite = preco_noite
-        self._estado_reserva=estado_reserva
+        super().__init__()
         
-        Quarto.obj[codigo] = self
-        Quarto.lst.append(codigo)
+        if cod_hotel in Hotel.lst:
+            self._codigo = codigo
+            self._cod_hotel = cod_hotel
+            self._preco_noite = preco_noite
+            self._estado_reserva=estado_reserva
         
+            Quarto.obj[codigo] = self
+            Quarto.lst.append(codigo)
+        else:
+            print('Hotel ', cod_hotel, ' not found')
+            
     @property 
     def codigo(self):
         return self._codigo
@@ -36,5 +41,18 @@ class Quarto(Gclass):
     def estado_reserva(self):
         return self._estado_reserva
     
-# Q100 = Quarto('A100','H1',50,Ativo)
-# print(Q100)
+    @codigo.setter
+    def codigo(self, codigo):
+        self._codigo = codigo
+    @cod_hotel.setter
+    def cod_hotel(self, cod_hotel):
+        if cod_hotel in Hotel.lst:
+            self._cod_hotel = cod_hotel
+        else:
+            print('Hotel ', cod_hotel, ' not found')
+    @preco_noite.setter 
+    def preco_noite(self, preco_noite):
+        self._preco_noite = preco_noite
+    @estado_reserva.setter 
+    def estado_reserva(self, estado_reserva):
+        self._estado_reserva = estado_reserva
