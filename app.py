@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 Hotel.read(filename + 'hotel.db')
 Quarto.read(filename + 'hotel.db')
-# CustomerOrder.read(filename + 'hotel.db')
+Pessoa.read(filename + 'hotel.db')
 # OrderProduct.read(filename + 'hotel.db')
 Userlogin.read(filename + 'hotel.db')
 
