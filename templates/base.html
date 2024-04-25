@@ -15,8 +15,9 @@
                 {% else %}
                     <li><a class="button" href="/logoff">Logoff</a></li>
                     <li><a class="button" href="/gform/Hotel">Hotel</a></li>
-                    <li><a class="button" href="/gform/Quarto">Quarto</a></li>
-                    <li><a class="button" href="/hform/Quarto">Tabela Quarto</a></li>
+                    <li><a class="button" href="/submenu?subm=Quarto">Quarto</a></li>
+                    
+                    <li><a class="button" href="/gform/Pessoa">Pessoa</a></li>
                     
                     <li><a class="button" href="/submenu?subm=product">Product</a></li>
                     <li><a class="button" href="/submenu?subm=order">Order</a></li>
@@ -26,6 +27,12 @@
                     <li><a class="button" style="color:lightblue">User: {{ulogin}}</a></li>
                     
                     <br><br>
+                    
+                    {% if submenu == "Quarto" %}
+                        <li><a class="button" href="/gform/Quarto?option=''&subm=Quarto">Quarto Form</a></li>
+                        <li><a class="button" href="/gformT/Quarto?option=''&subm=Quarto">Quarto Tabela</a></li>
+                    {% endif %}
+                
                     {% if submenu == "order" %}
                         <li><a class="button" href="/subform/CustomerOrder_OrderProduct?option=''&subm=order">Order lines</a></li>
                         <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
@@ -35,6 +42,8 @@
                         <li><a class="button" href="/gform/Product?subm=product">Product</a></li>
                         <li><a class="button" href="/productform?subm=product">Product(foto)</a></li>
                     {% endif %} 
+                    
+                    
                     
                 {% endif %}
             </ul>
