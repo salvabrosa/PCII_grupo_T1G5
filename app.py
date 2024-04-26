@@ -45,10 +45,6 @@ def index():
 def login():
     return lsub.login()
 
-@app.route("/register")
-def signup():
-    return signupsub.registerform()
-
 @app.route("/logoff")
 def logoff():
     return lsub.logoff()
@@ -56,6 +52,11 @@ def logoff():
 @app.route("/chklogin", methods=["post","get"])
 def chklogin():
     return lsub.chklogin()
+
+@app.route("/register/<cname>", methods=["post","get"])
+def register(cname=''):
+    submenu = request.args.get("subm")
+    return signupsub.registerform(cname,submenu)
 
 @app.route("/submenu", methods=["post","get"])
 def getsubm():

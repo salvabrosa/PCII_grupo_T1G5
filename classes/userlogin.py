@@ -15,23 +15,28 @@ class Userlogin(Gclass):
     sortkey = ''
     auto_number = 0
     nkey = 1
-    # class attributes, identifier attribute must be the first one on the list
-    att = ['_user','_usergroup','_password']
-    # Class header title
+    
+    att = ['_user','_usergroup','_password','_nome','_idade','_morada','_email','_telemovel','_pais']
     header = 'Users'
-    # field description for use in, for example, in input form
-    des = ['User','User group','Password']
+    des = ['User','User group','Password','Nome','Idade','Morada','Email','Telemovel','Pais']
     username = ''
+    
     # Constructor: Called when an object is instantiated
-    def __init__(self, user, usergroup, password):
+    def __init__(self, user, usergroup, password, nome, idade, morada, email, telemovel, pais):
         super().__init__()
-        # Object attributes
+
         self._user = user
         self._usergroup = usergroup
         self._password = password
-        # Add the new object to the dictionary of objects
+        
+        self._nome = nome
+        self._idade = idade
+        self._morada = morada
+        self._email = email
+        self._telemovel = telemovel
+        self._pais = pais
+        
         Userlogin.obj[user] = self
-        # Add the code to the list of object codes
         Userlogin.lst.append(user)
 
     # code property getter method
@@ -50,10 +55,29 @@ class Userlogin(Gclass):
     def password(self):
         return ""
     
+    @property 
+    def nome(self):
+        return self._nome
+    @property 
+    def idade(self):
+        return self._idade
+    @property 
+    def morada(self):
+        return self._morada
+    @property 
+    def email(self):
+        return self._email
+    @property 
+    def telemovel(self):
+        return self._telemovel
+    @property 
+    def pais(self):
+        return self._pais
+    
     @password.setter
     def password(self, password):
         self._password = password
-
+    
     @classmethod
     def chk_password(self, user, password):
         Userlogin.username = ''
@@ -72,3 +96,23 @@ class Userlogin(Gclass):
     def set_password(self, password):
         passencrypted = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         return passencrypted.decode()
+
+
+    @nome.setter 
+    def nome(self, nome):
+        self._nome = nome 
+    @idade.setter 
+    def idade(self, idade):
+        self._idade = idade 
+    @morada.setter 
+    def morada(self, morada):
+        self._morada = morada 
+    @email.setter 
+    def email(self, email):
+        self._email = email 
+    @telemovel.setter 
+    def telemovel(self, telemovel):
+        self._telemovel = telemovel 
+    @pais.setter 
+    def pais(self, pais):
+        self._pais = pais
