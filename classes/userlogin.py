@@ -16,28 +16,30 @@ class Userlogin(Gclass):
     auto_number = 0
     nkey = 1
     
-    att = ['_user','_usergroup','_password','_nome','_idade','_morada','_email','_telemovel','_pais']
+    att = ['_user','_password','_nome','_idade','_morada','_email','_telemovel','_pais']
     header = 'Users'
-    des = ['User','User group','Password','Nome','Idade','Morada','Email','Telemovel','Pais']
+    des = ['User','Password','Nome','Idade','Morada','Email','Telemovel','Pais']
     username = ''
     
     # Constructor: Called when an object is instantiated
-    def __init__(self, user, usergroup, password, nome, idade, morada, email, telemovel, pais):
+    def __init__(self, user, password, nome, idade, morada, email, telemovel, pais, usergroup='user'):
         super().__init__()
-
-        self._user = user
-        self._usergroup = usergroup
-        self._password = password
         
-        self._nome = nome
-        self._idade = idade
-        self._morada = morada
-        self._email = email
-        self._telemovel = telemovel
-        self._pais = pais
+        if user not in Userlogin.lst:
+            
+            self._user = user
+            self._usergroup = usergroup
+            self._password = password
         
-        Userlogin.obj[user] = self
-        Userlogin.lst.append(user)
+            self._nome = nome
+            self._idade = idade
+            self._morada = morada
+            self._email = email
+            self._telemovel = telemovel
+            self._pais = pais
+        
+            Userlogin.obj[user] = self
+            Userlogin.lst.append(user)
 
     # code property getter method
     @property
@@ -92,6 +94,7 @@ class Userlogin(Gclass):
         else:
             message = 'No existent user'
         return message
+    
     @classmethod
     def set_password(self, password):
         passencrypted = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
