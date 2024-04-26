@@ -34,6 +34,7 @@ import subs_gformT as gfTsub
 import subs_hform as gfhsub
 import subs_subform as gfsubsub
 #import subs_productFoto as productFotosub
+import subs_signup as signupsub
 
 
 @app.route("/")
@@ -43,6 +44,10 @@ def index():
 @app.route("/login")
 def login():
     return lsub.login()
+
+@app.route("/register")
+def signup():
+    return signupsub.registerform()
 
 @app.route("/logoff")
 def logoff():
