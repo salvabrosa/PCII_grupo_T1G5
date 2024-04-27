@@ -11,7 +11,6 @@ from classes.quarto import Quarto
 from classes.reservaquarto import ReservaQuarto
 from classes.fatura_reserva import Fatura_Reserva
 from classes.fatura import Fatura
-from classes.pessoa import Pessoa
 from classes.userlogin import Userlogin
 
 prev_option = ""

@@ -20,7 +20,7 @@
             <form id="form" action="/register/{{cname}}?option=save" method="post">   <!-- OPTION INSERT (ESTAVA SAVE)-->
                 {% for key in att %}
                   <label for="{{key}}">{{des[loop.index-1]}}:</label>
-                  {% if loop.index == 1 and butedit == 'enabled' and auto_number == 1 %}
+                  {% if (loop.index == 1 and butedit == 'enabled' and auto_number == 1) or  loop.index == 9 %}
                       <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
                   {%else%}                  
                       <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>

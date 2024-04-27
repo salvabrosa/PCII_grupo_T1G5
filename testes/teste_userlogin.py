@@ -1,20 +1,20 @@
 from datafile import filename
 
-from classes.pessoa import Pessoa
+from classes.userlogin import Userlogin
 
 
-Pessoa.read(filename + 'hotel.db')  
+Userlogin.read(filename + 'hotel.db')  
 
-cname = "Pessoa"
+cname = "Userlogin"
 cl = eval(cname)
 
-obj = cl.from_string("P100;João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal")
+obj = cl.from_string("joao0;1234;João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal;user")
 
 print("objeto sem estar gravado ",obj)
 
 cl.insert(getattr(obj,cl.att[0]))
 
-obj = cl.from_string("P123;João Caires;39;Rua das Flores 18;joaocaires@hotelmail.com;966 732 224;Portugal")
+obj = cl.from_string("joao00;1234;João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal;user")
 cl.insert(getattr(obj,cl.att[0]))
 
 
@@ -25,7 +25,7 @@ print("\nLista dos onjetos gravados " ,cl.lst)
 obj = cl.first()
 print ("\nPrimeiro objeto gravado ",obj)
 obj.name = "WORD11"
-Pessoa.update(getattr(obj, cl.att[0]))
+Userlogin.update(getattr(obj, cl.att[0]))
 
 cl.read(filename + 'hotel.db')
 

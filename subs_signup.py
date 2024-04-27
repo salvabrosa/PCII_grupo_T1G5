@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, session
 from classes.userlogin import Userlogin
-from classes.pessoa import Pessoa
 
 def login():
     return render_template("login.html", user= "", password="", ulogin=session.get("user"),resul = "")
@@ -33,15 +32,16 @@ def registerform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
-            for i in range(1,len(cl.att)):
+            for i in range(1,len(cl.att)-1):                            #range(1,len(cl.att)) sem usergroup
                 strobj += ";" + request.form[cl.att[i]]
+            strobj += ";" +"user"                                       # usergroup
             obj = cl.from_string(strobj)
             cl.insert(getattr(obj, cl.att[0]))
             cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
-            for i in range(cl.auto_number,len(cl.att)):
+            for i in range(cl.auto_number,len(cl.att)-1):                 #usergroup
                 att = cl.att[i]
                 setattr(obj, att, request.form[att])
             cl.update(getattr(obj, cl.att[0]))
@@ -75,6 +75,7 @@ def registerform(cname='',submenu=""):
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
+            obj['_usergroup'] = 'user'                                                        #att usergroup
         return render_template("register.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
