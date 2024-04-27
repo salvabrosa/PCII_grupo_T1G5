@@ -17,7 +17,7 @@
   <!--  <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/register/{{cname}}?option=cancel'" class="button1">Cancel</button>      -->
   <!--  <button id="exit" type="button" {{butshow}} onclick="window.location.href = '/register/{{cname}}?option=exit'" class="button1">Exit</button>         -->
         <br><br>
-            <form id="form" action="/register/{{cname}}?option=save" method="post">   <!-- OPTION INSERT (ESTAVA SAVE)-->
+            <form id="form" action="/register/{{cname}}?option=insert" method="post">   <!-- OPTION INSERT (ESTAVA SAVE)-->
                 {% for key in att %}
                   <label for="{{key}}">{{des[loop.index-1]}}:</label>
                   {% if (loop.index == 1 and butedit == 'enabled' and auto_number == 1) or  loop.index == 9 %}
