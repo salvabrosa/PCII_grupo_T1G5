@@ -12,12 +12,6 @@ from classes.reservaquarto import ReservaQuarto
 from classes.fatura_reserva import Fatura_Reserva
 from classes.fatura import Fatura
 from classes.userlogin import Userlogin
-# from flask import Flask, render_template, request, session
-# from classes.customer import Customer
-# from classes.product import Product
-# from classes.customerorder import CustomerOrder
-# from classes.orderproduct import OrderProduct
-# from classes.userlogin import Userlogin
 
 prev_option = ""
 
