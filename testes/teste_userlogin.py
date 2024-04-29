@@ -8,13 +8,13 @@ Userlogin.read(filename + 'hotel.db')
 cname = "Userlogin"
 cl = eval(cname)
 
-obj = cl.from_string("joao0;1234;João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal;user")
+obj = cl.from_string("joao9;"+ Userlogin.set_password("1234")+ ";João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal;user")
 
 print("objeto sem estar gravado ",obj)
 
 cl.insert(getattr(obj,cl.att[0]))
 
-obj = cl.from_string("joao00;1234;João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal;user")
+obj = cl.from_string("joao10;"+ Userlogin.set_password("1234")+ ";João Madeira;38;Rua das Flores 18;joaomadeira@hotelmail.com;966 772 224;Portugal;user")
 cl.insert(getattr(obj,cl.att[0]))
 
 
