@@ -32,9 +32,12 @@ def registerform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
-            for i in range(1,len(cl.att)-1):                            #range(1,len(cl.att)) sem usergroup
-                strobj += ";" + request.form[cl.att[i]]
-            strobj += ";" +"user"                                       # usergroup
+            for i in range(1,len(cl.att)-1):
+                if i == 1:
+                    strobj += ";" + Userlogin.set_password(request.form[cl.att[i]])
+                else:
+                     strobj += ";" + request.form[cl.att[i]]
+            strobj += ";" +"user"                                       
             obj = cl.from_string(strobj)
             cl.insert(getattr(obj, cl.att[0]))
             cl.last()
