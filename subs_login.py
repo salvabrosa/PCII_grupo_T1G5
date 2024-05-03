@@ -22,11 +22,7 @@ def chklogin():
     password = request.form["password"]
     resul = Userlogin.chk_password(user, password)
     temp = Userlogin.find(user, "_user")
-    #temp2 = temp[0].split(";")
-    print(type(temp))
-    print(type(temp[0]))
     tipou = temp[0].usergroup
-    print(tipou)
     if resul == "Valid":
         session["user"] = user
         session["tipouser"] = tipou
