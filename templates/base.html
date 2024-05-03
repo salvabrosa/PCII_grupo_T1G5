@@ -18,8 +18,14 @@
                 {% else %}
                     <li><a class="button" href="/logoff">Logoff</a></li>
                     <li><a class="button" href="/gform/Hotel">Hotel</a></li>
-                    <li><a class="button" href="/submenu?subm=Quarto">Quarto</a></li>
                     
+                    {% if tipou == "admin" %}
+                    <li><a class="button" href="/submenu?subm=Quarto">Quarto</a></li>
+                        
+                    {% else %}
+                        <li><a class="button" href="/gform/Quarto">Quarto</a></li>
+                    {% endif %}  
+                        
                     <li><a class="button" href="/gform/Userlogin">User</a></li>
                     
                     <li><a class="button" href="/submenu?subm=product">Product</a></li>
