@@ -16,10 +16,8 @@ class ReservaQuarto(Gclass):
     def __init__(self, cod_reserva, diaComeco, diaFim, estado_reserva, cod_quarto, cod_cliente):
         super().__init__()  
         self._cod_reserva = cod_reserva
-        lisdiac=diaComeco.split('-')
-        self._diaComeco = datetime.date(int(lisdiac[2]),int(lisdiac[1]),int(lisdiac[0]))
-        lisdiaf=diaFim.split('-')
-        self._diaFim = datetime.date(int(lisdiaf[2]),int(lisdiaf[1]),int(lisdiaf[0]))
+        self._diaComeco = diaComeco
+        self._diaFim = diaFim
         self._estado_reserva=estado_reserva
         self._cod_quarto = cod_quarto
         self._cod_cliente = cod_cliente
