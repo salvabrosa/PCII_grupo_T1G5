@@ -48,6 +48,3 @@ class ReservaQuarto(Gclass):
         diferença=self._diaFim-self._diaComeco
         return diferença
     
-# rq1=ReservaQuarto('rq1', '12-01-2024', '16-01-2024', 'Ativa', 'A100', '12345')
-# print(rq1)
-   
