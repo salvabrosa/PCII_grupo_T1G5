@@ -21,7 +21,14 @@ def chklogin():
     user = request.form["user"]
     password = request.form["password"]
     resul = Userlogin.chk_password(user, password)
+    temp = Userlogin.find(user, "_user")
+    #temp2 = temp[0].split(";")
+    print(type(temp))
+    print(type(temp[0]))
+    tipou = temp[0].usergroup
+    print(tipou)
     if resul == "Valid":
         session["user"] = user
+        session["tipouser"] = tipou
         return render_template("index.html", ulogin=session.get("user"))
     return render_template("login.html", user=user, password = password, ulogin=session.get("user"),resul = resul)
