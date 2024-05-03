@@ -46,7 +46,7 @@ def gform(cname='',submenu=""):
                 butedit = "enabled"
             elif option == "delete":
                 obj = cl.current()
-                cl.remove(obj.code)
+                cl.remove(getattr(obj, cl.att[0]))
                 if not cl.previous():
                     cl.first()
             elif option == "insert":
