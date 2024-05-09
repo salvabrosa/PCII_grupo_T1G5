@@ -9,7 +9,7 @@ from flask import Flask, render_template, request, session
 from classes.hotel import Hotel
 from classes.quarto import Quarto
 from classes.reservaquarto import ReservaQuarto
-from classes.fatura_reserva import Fatura_Reserva
+from classes.faturareserva import FaturaReserva
 from classes.fatura import Fatura
 from classes.userlogin import Userlogin
 
