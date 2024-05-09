@@ -28,9 +28,9 @@
                         
                     <li><a class="button" href="/gform/Userlogin">User</a></li>
                     
-                    <li><a class="button" href="/submenu?subm=product">Product</a></li>
-                    <li><a class="button" href="/submenu?subm=order">Order</a></li>
+<!--                <li><a class="button" href="/submenu?subm=product">Product</a></li>   -->
                     
+                    <li><a class="button" href="/submenu?subm=Reserva">Reserva</a></li>    
                     
                     
                     <li><a class="button" style="color:lightblue">User: {{ulogin}} </a></li>
@@ -42,8 +42,8 @@
                         <li><a class="button" href="/gformT/Quarto?option=''&subm=Quarto">Quarto Tabela</a></li>
                     {% endif %}
                 
-                    {% if submenu == "order" %}
-                        <li><a class="button" href="/subform/CustomerOrder_OrderProduct?option=''&subm=order">Order lines</a></li>
+                    {% if submenu == "Reserva" %}
+                        <li><a class="button" href="/subform/Fatura_Fatura_Reserva?option=''&subm=Reserva">Reserva line</a></li>
                         <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
                     {% endif %} 
                     
