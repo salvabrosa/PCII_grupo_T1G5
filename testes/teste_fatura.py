@@ -4,14 +4,14 @@ from classes.fatura import Fatura
 from classes.hotel import Hotel
 from classes.quarto import Quarto
 from classes.reservaquarto import ReservaQuarto
-from classes.fatura_reserva import Fatura_Reserva
+from classes.faturareserva import FaturaReserva
 
 
 Fatura.read(filename + 'hotel.db')  
 Hotel.read(filename + 'hotel.db')
 Quarto.read(filename + 'hotel.db')
 ReservaQuarto.read(filename + 'hotel.db')
-Fatura_Reserva.read(filename + 'hotel.db')
+FaturaReserva.read(filename + 'hotel.db')
 
 cname = "Fatura"
 cl = eval(cname)

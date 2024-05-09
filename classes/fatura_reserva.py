@@ -4,7 +4,7 @@ from classes.fatura import Fatura
 from classes.reservaquarto import ReservaQuarto
 import datetime
 
-class Fatura_Reserva(Gclass):
+class FaturaReserva(Gclass):
     obj = dict()
     lst =list()
     pos = 0
@@ -13,7 +13,7 @@ class Fatura_Reserva(Gclass):
     nkey = 2
     
     att = ['_cod_fatura','_cod_reserva','_preco','_nreservas']
-    header = 'Fatura_Reserva'
+    header = 'FaturaReserva'
     des = ['Codigo da Fatura','Codigo da Reserva','Preço','Nº de reservas']
     
     def __init__(self, cod_fatura, cod_reserva, preco, nreservas):
@@ -25,8 +25,8 @@ class Fatura_Reserva(Gclass):
                 self._preco = preco
                 self._nreservas = nreservas
         
-                Fatura_Reserva.obj[cod_fatura] = self
-                Fatura_Reserva.lst.append(cod_fatura)
+                FaturaReserva.obj[cod_fatura] = self
+                FaturaReserva.lst.append(cod_fatura)
             else:
                 print('Product ', cod_reserva, ' not found')
         else:

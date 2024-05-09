@@ -6,7 +6,7 @@ import os
 from classes.hotel import Hotel
 from classes.quarto import Quarto
 from classes.reservaquarto import ReservaQuarto
-from classes.fatura_reserva import Fatura_Reserva
+from classes.faturareserva import FaturaReserva
 from classes.fatura import Fatura
 from classes.userlogin import Userlogin
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 Hotel.read(filename + 'hotel.db')
 Quarto.read(filename + 'hotel.db')
 ReservaQuarto.read(filename + 'hotel.db')
-Fatura_Reserva.read(filename + 'hotel.db')
+FaturaReserva.read(filename + 'hotel.db')
 Fatura.read(filename + 'hotel.db')
 Userlogin.read(filename + 'hotel.db')
 
