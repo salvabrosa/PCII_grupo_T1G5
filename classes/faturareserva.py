@@ -1,7 +1,18 @@
+from datafile import filename
+
 from classes.gclass import Gclass
-from classes.userlogin import Userlogin
-from classes.fatura import Fatura
+from classes.hotel import Hotel
+from classes.quarto import Quarto
 from classes.reservaquarto import ReservaQuarto
+from classes.fatura import Fatura
+from classes.userlogin import Userlogin
+
+Hotel.read(filename + 'hotel.db')
+Quarto.read(filename + 'hotel.db')
+ReservaQuarto.read(filename + 'hotel.db')
+Fatura.read(filename + 'hotel.db')
+Userlogin.read(filename + 'hotel.db')
+
 import datetime
 
 class FaturaReserva(Gclass):
