@@ -13,7 +13,7 @@ class Fatura_Reserva(Gclass):
     nkey = 2
     
     att = ['_cod_fatura','_cod_reserva','_preco','_nreservas']
-    header = 'Quarto'
+    header = 'Fatura_Reserva'
     des = ['Codigo da Fatura','Codigo da Reserva','Preço','Nº de reservas']
     
     def __init__(self, cod_fatura, cod_reserva, preco, nreservas):
@@ -28,9 +28,9 @@ class Fatura_Reserva(Gclass):
                 Fatura_Reserva.obj[cod_fatura] = self
                 Fatura_Reserva.lst.append(cod_fatura)
             else:
-                print('Product ', cod_reserva, ' not found')       #QUARTO ?????
+                print('Product ', cod_reserva, ' not found')
         else:
-            print('Order ', cod_fatura, ' not found')        #ALTERAR
+            print('Order ', cod_fatura, ' not found')      
             
     @property 
     def cod_fatura(self):
