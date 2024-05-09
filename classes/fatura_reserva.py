@@ -1,6 +1,7 @@
 from classes.gclass import Gclass
 from classes.userlogin import Userlogin
-from classes.Fatura import Fatura
+from classes.fatura import Fatura
+from classes.reservaquarto import ReservaQuarto
 import datetime
 
 class Fatura_Reserva(Gclass):
@@ -18,7 +19,7 @@ class Fatura_Reserva(Gclass):
     def __init__(self, cod_fatura, cod_reserva, preco, nreservas):
         super().__init__() 
         if cod_fatura in Fatura.lst:
-            if cod_reserva in Reserva.lst:                       # !!!!!!!!!!
+            if cod_reserva in ReservaQuarto.lst:
                 self._cod_fatura = cod_fatura
                 self._cod_reserva = cod_reserva
                 self._preco = preco
@@ -27,9 +28,9 @@ class Fatura_Reserva(Gclass):
                 Fatura_Reserva.obj[cod_fatura] = self
                 Fatura_Reserva.lst.append(cod_fatura)
             else:
-                print('Product ', Reserva, ' not found')       #QUARTO ?????
+                print('Product ', cod_reserva, ' not found')       #QUARTO ?????
         else:
-            print('Order ', order_code, ' not found')        #ALTERAR
+            print('Order ', cod_fatura, ' not found')        #ALTERAR
             
     @property 
     def cod_fatura(self):
