@@ -53,7 +53,7 @@ def subform(cname="",submenu=""):
                 lines = sbl.getlines(getattr(obj, cl.att[0]))
                 for line in lines:
                     sbl.remove(line)
-                cl.remove(obj.code)
+                cl.remove(getattr(obj, cl.att[0]))
                 if not cl.previous():
                     cl.first()
             elif option == "insert":
