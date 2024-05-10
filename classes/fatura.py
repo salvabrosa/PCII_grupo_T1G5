@@ -4,7 +4,7 @@ import datetime
 
 class Fatura(Gclass):
     obj = dict()
-    lst =list()
+    lst = list()
     pos = 0
     sortkey = ''
     auto_number = 1
@@ -48,3 +48,9 @@ class Fatura(Gclass):
     def dataemissao(self, dataemissao):
         return self._dataemissao                            
 
+    @cod_cliente.setter
+    def cod_cliente(self, cod_cliente):
+        if cod_cliente in Userlogin.lst:
+            self._cod_cliente = cod_cliente
+        else:
+            print('Customer ', cod_cliente, ' not found') 

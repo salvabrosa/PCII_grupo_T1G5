@@ -33,15 +33,16 @@ class FaturaReserva(Gclass):
             if cod_reserva in ReservaQuarto.lst:
                 self._cod_fatura = cod_fatura
                 self._cod_reserva = cod_reserva
-                self._preco = preco
-                self._nreservas = nreservas
+                self._preco = float(preco)
+                self._nreservas = float(nreservas)
         
-                FaturaReserva.obj[cod_fatura] = self
-                FaturaReserva.lst.append(cod_fatura)
+                code = str(cod_fatura) + str(cod_reserva)
+                FaturaReserva.obj[code] = self
+                FaturaReserva.lst.append(code)
             else:
-                print('Product ', cod_reserva, ' not found')
+                print('Reserva ', cod_reserva, ' not found')
         else:
-            print('Order ', cod_fatura, ' not found')      
+            print('Fatura ', cod_fatura, ' not found')      
             
     @property 
     def cod_fatura(self):
@@ -56,3 +57,9 @@ class FaturaReserva(Gclass):
     def nreservas(self):
         return self._nreservas
     
+    @preco.setter
+    def quantity(self, preco):
+        self._preco = float(preco)
+    @nreservas.setter
+    def nreservas(self, nreservas):
+        self._nreservas = float(nreservas)    
