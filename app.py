@@ -12,12 +12,14 @@ from classes.userlogin import Userlogin
 
 app = Flask(__name__)
 
+Userlogin.read(filename + 'hotel.db')
 Hotel.read(filename + 'hotel.db')
 Quarto.read(filename + 'hotel.db')
+Fatura.read(filename + 'hotel.db')
 ReservaQuarto.read(filename + 'hotel.db')
 FaturaReserva.read(filename + 'hotel.db')
-Fatura.read(filename + 'hotel.db')
-Userlogin.read(filename + 'hotel.db')
+
+
 
 prev_option = ""
 submenu = ""
