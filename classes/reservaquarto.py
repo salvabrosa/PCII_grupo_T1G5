@@ -11,7 +11,7 @@ class ReservaQuarto(Gclass):
     
     att = ['_cod_reserva','_diaComeco','_diaFim','_estado_reserva','_cod_quarto','_cod_cliente']
     header = 'ReservaQuarto'
-    des = ['Codigo do quarto','Dia de começo','Dia de fim','Estado da reserva','Codigo de quarto','Codigo cliente']
+    des = ['Codigo da Reserva','Dia de começo','Dia de fim','Estado da reserva','Codigo de quarto','Codigo cliente']
     
     def __init__(self, cod_reserva, diaComeco, diaFim, estado_reserva, cod_quarto, cod_cliente):
         super().__init__()  
