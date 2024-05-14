@@ -5,10 +5,31 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        .centered-title {
+            position: fixed;                   /* Fix the position on the screen */
+            top: 50%;                              /* Center vertically */
+            left: 50%;                          /* Center horizontally */
+            transform: translate(-50%, -50%);                 /* Adjust the exact center */
+            background-color: rgba(30, 219, 247, 0.7);                  /* Semi-transparent black background */
+            color: white;                                       /* White text color */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 20%;                                           /* Set the width of the title box */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);             /* Optional: adds shadow for better visibility */
+        }
+        
+        body {
+            background-image: url('static/images/index.jpg');       /* Specify the path to your image */
+            background-size: cover;                                   /* Cover the entire background */
+            background-repeat: no-repeat;                     /* Prevent the background from repeating */
+            height: 100vh;                                   /* Full height */
+            margin: 0;                                        /* Remove default margin */
+        }
+    </style>
 
-    <div class="dados">
-        <br><br>
-            <h1>Trabalho Hotel</h1>
+    <div class="centered-title">
+        <h1>Trabalho Hotel</h1>
     </div>
-    
 {% endblock %}
