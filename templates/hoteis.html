@@ -45,14 +45,31 @@
                 </td>
                 </tr>
             </table>
+               
             
         <br>
-        {% if tipou == "admin" %}
+        
+        {% if tipou == "admin" or tipou == "user" %}
         <button id="first" type="button" {{butshow}} onclick="window.location.href = '/hoteis?option=first'" class="button1">First</button>
         <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/hoteis?option=previous'" class="button1">Previous</button>
         <button id="next" type="button" {{butshow}} onclick="window.location.href = '/hoteis?option=next'" class="button1">Next</button>
         <button id="last" type="button" {{butshow}} onclick="window.location.href = '/hoteis?option=last'" class="button1">Last</button>
-        {%endif%}    
+        {%endif%}   
+         
+         
+        <br><br>
+        <br><br>
+        
+            <table>
+                <tr>                
+                <td style="text-align: center; vertical-align: middle;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.7057809172065!2d-9.16108632460317!3d38.7245634568845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19336fb3c339cf%3A0x6f727d920dc193ec!2sEPIC%20SANA%20Lisboa%20Hotel!5e0!3m2!1spt-PT!2spt!4v1715808845470!5m2!1spt-PT!2spt" 
+                    width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </td>
+                </tr>
+            </table>
+         
     </div>
 
 {% endblock %}
