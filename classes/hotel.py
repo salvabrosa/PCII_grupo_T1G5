@@ -9,11 +9,11 @@ class Hotel(Gclass):
     auto_number = 0
     nkey = 1
     
-    att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios']
+    att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios','video']
     header = 'Hotel'
-    des = ['Codigo','Nome','Localização','Número de quartos','Contacto','Número de funcionários']
+    des = ['Codigo','Nome','Localização','Nº de quartos','Contacto','Nº de funcionários','Video']
     
-    def __init__(self, codigo, nome, localizacao, nquartos, contacto, nfuncionarios):
+    def __init__(self, codigo, nome, localizacao, nquartos, contacto, nfuncionarios, video):
         super().__init__()  
         self._codigo = codigo
         self._nome = nome
@@ -21,6 +21,7 @@ class Hotel(Gclass):
         self._localizacao = localizacao
         self._contacto = contacto
         self._nfuncionarios = nfuncionarios
+        self._video = video
         
         Hotel.obj[codigo] = self
         Hotel.lst.append(codigo)
@@ -44,6 +45,9 @@ class Hotel(Gclass):
     @property 
     def nfuncionarios(self):
         return self._nfuncionarios
+    @property 
+    def video(self):
+        return self._video
     
     @codigo.setter 
     def codigo(self, codigo):
