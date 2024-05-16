@@ -28,8 +28,8 @@ prev_option = ""
 submenu = ""
 app.secret_key = 'BAD_SECRET_KEY'
 
-# upload_folder = os.path.join('static', 'ProductFotos')
-# app.config['UPLOAD'] = upload_folder
+upload_folder = os.path.join('static', 'FotosQuartos')
+app.config['UPLOAD'] = upload_folder
 
 
 import subs_login as lsub
@@ -41,6 +41,7 @@ import subs_subform as gfsubsub
 import subs_signup as signupsub
 import subs_hoteis as hoteissub
 import subs_quartos as quartossub
+import subs_quartosFotos as quartosFsub
 
 @app.route("/")
 def index():
@@ -113,7 +114,10 @@ def quartosform(cname='Quarto'):
     submenu = request.args.get("subm")
     return quartossub.quartosform(cname,submenu)
 
-
+@app.route("/tiposquartos", methods=["post","get"])
+def quartosFotos(cname='TiposQuarto'):
+    submenu = request.args.get("subm")
+    return quartosFsub.quartosFotosform(app, cname,submenu)
 
   
 if __name__ == '__main__':
