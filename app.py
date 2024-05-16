@@ -37,6 +37,7 @@ import subs_subform as gfsubsub
 #import subs_productFoto as productFotosub
 import subs_signup as signupsub
 import subs_hoteis as hoteissub
+import subs_quartos as quartossub
 
 @app.route("/")
 def index():
@@ -103,6 +104,13 @@ def ordermapa():
 def hoteisform(cname='Hotel'):
     submenu = request.args.get("subm")
     return hoteissub.hoteisform(cname,submenu)
+
+@app.route("/quartos", methods=["post","get"])
+def quartosform(cname='Quarto'):
+    submenu = request.args.get("subm")
+    return quartossub.quartosform(cname,submenu)
+
+
 
   
 if __name__ == '__main__':
