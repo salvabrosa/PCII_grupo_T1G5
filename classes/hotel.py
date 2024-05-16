@@ -48,6 +48,9 @@ class Hotel(Gclass):
     @property 
     def video(self):
         return self._video
+    @property 
+    def maps_lugar(self):
+        return self._localizacao.replace(' ','+')
     
     @codigo.setter 
     def codigo(self, codigo):
@@ -67,4 +70,7 @@ class Hotel(Gclass):
     @nfuncionarios.setter 
     def nfuncionarios(self, nfuncionarios):
         self._nfuncionarios = nfuncionarios
+    @video.setter 
+    def video(self, video):
+        self._video = video
 
