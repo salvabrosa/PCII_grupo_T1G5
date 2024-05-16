@@ -8,25 +8,24 @@ class TiposQuarto(Gclass):
     auto_number = 0
     nkey = 1
     
-    att = ['_codigo','_name']
+    att = ['_codigo','_nome']
     header = 'Tipos'
     des = ['Codigo','Tipo']
-    def __init__(self, codigo,name):
+    def __init__(self, codigo, nome):
         super().__init__()
 
         self._codigo = codigo
-        self._name = name
+        self._nome = nome
 
         TiposQuarto.obj[codigo] = self
         TiposQuarto.lst.append(codigo)
-
 
     @property
     def codigo(self):
         return self._codigo
     @property
-    def name(self):
-        return self._name    
-    @name.setter
-    def name(self, name):
-        self._name = name
+    def nome(self):
+        return self._nome    
+    @nome.setter
+    def nome(self, nome):
+        self._nome = nome

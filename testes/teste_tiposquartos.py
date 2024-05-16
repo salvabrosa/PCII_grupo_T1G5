@@ -8,13 +8,13 @@ TiposQuarto.read(filename + 'hotel.db')
 cname = "TiposQuarto"
 cl = eval(cname)
 
-obj = cl.from_string("None;Nenhum") 
+obj = cl.from_string("1;Quarto solteiro") 
 
 print("objeto sem estar gravado ",obj)
 
 cl.insert(getattr(obj,cl.att[0]))
 
-obj = cl.from_string("1;Quarto de solteiro") 
+obj = cl.from_string("2;Quarto duplo") 
 cl.insert(getattr(obj,cl.att[0]))
 
 
