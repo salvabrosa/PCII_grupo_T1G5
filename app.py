@@ -9,11 +9,14 @@ from classes.reservaquarto import ReservaQuarto
 from classes.faturareserva import FaturaReserva
 from classes.fatura import Fatura
 from classes.userlogin import Userlogin
+from classes.tiposquarto import TiposQuarto
 
 app = Flask(__name__)
 
 Userlogin.read(filename + 'hotel.db')
+
 Hotel.read(filename + 'hotel.db')
+TiposQuarto.read(filename + 'hotel.db')
 Quarto.read(filename + 'hotel.db')
 Fatura.read(filename + 'hotel.db')
 ReservaQuarto.read(filename + 'hotel.db')

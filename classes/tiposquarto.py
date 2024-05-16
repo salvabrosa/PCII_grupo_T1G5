@@ -10,7 +10,7 @@ class TiposQuarto(Gclass):
     
     att = ['_codigo','_name']
     header = 'Tipos'
-    des = ['Codigo','']
+    des = ['Codigo','Tipo']
     def __init__(self, codigo,name):
         super().__init__()
 

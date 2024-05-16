@@ -12,6 +12,7 @@ from classes.reservaquarto import ReservaQuarto
 from classes.faturareserva import FaturaReserva
 from classes.fatura import Fatura
 from classes.userlogin import Userlogin
+from classes.tiposquarto import TiposQuarto
 
 from datetime import timedelta
 from datetime import datetime
