@@ -48,3 +48,27 @@ class ReservaQuarto(Gclass):
         diferença=self._diaFim-self._diaComeco
         return diferença
     
+    @cod_reserva.setter
+    def cod_reserva(self, cod_reserva):
+        self._cod_reserva = cod_reserva
+    @diaComeco.setter
+    def diaComeco(self, diaComeco):
+        self._diaComeco = diaComeco
+    @diaFim.setter
+    def diaFim(self, diaFim):
+        self._diaFim = diaFim
+    @estado_reserva.setter
+    def estado_reserva(self, estado_reserva):
+        self._estado_reserva = estado_reserva
+    @cod_quarto.setter
+    def cod_quarto(self, cod_quarto):
+        self._cod_quarto = cod_quarto
+    @cod_cliente.setter
+    def cod_cliente(self, cod_cliente):
+        self._cod_cliente = cod_cliente
+    
+    
+    
+    
+    
+    
