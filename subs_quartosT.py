@@ -91,6 +91,7 @@ def quartosTform(cname='',submenu=""):
             elif option == "addrow":
                 butshow = "disabled"
                 butedit = "disabled"
+               
             elif option == "saverow":
                
                 if (sbl.auto_number == 1):
@@ -129,6 +130,7 @@ def quartosTform(cname='',submenu=""):
         objl = list()
         for line in sbl.lst:
             objl.append(sbl.obj[line])
+           
         # return render_template("subform.html", butshow=butshow, butedit=butedit,
         #             cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
         #             ulogin=session.get("user"),objl=objl,headerl=sbl.header,
@@ -137,6 +139,6 @@ def quartosTform(cname='',submenu=""):
                     cname=cname, 
                     ulogin=session.get("user"),objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att,
-                    submenu=submenu)
+                    submenu=submenu, TiposQuarto =TiposQuarto.obj)
     else:
         return render_template("index.html", ulogin=ulogin)

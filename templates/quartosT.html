@@ -28,7 +28,17 @@
                     <tr>
                         <form id="formrow" action="/quartosT?option=saverow" method="post">
                         {% for key in attl %}
-                             <td><input type="text" id="{{key}}" name="{{key}}" value="" size="20"/></td>
+                            {% if loop.index == 3 %} 
+                            <td><select name="_tipoquarto" id="_tipoquarto" {{butedit}} >
+                                {% for valor in TiposQuarto.values() %} 
+                                    <option value="{{valor.codigo}}">{{valor.codigo}} - {{TiposQuarto[valor.codigo].nome}} </option>
+                                  
+                                {% endfor %}
+                                    <option value="{{objl['_tipoquarto']}} SELECTED>{{TiposQuarto[objl['_tipoquarto']].codigo}} - {{TiposQuarto[objl['_tipoquarto']].nome}}</option>        
+                            </select></td>
+                            {%else%} 
+                                 <td><input type="text" id="{{key}}" name="{{key}}" value="" size="20"/></td>
+                            {%endif%}
                         {% endfor %}
                         <td><button id="save" type="submit" form="formrow" class = "button1" >Save</button>
                             <button id="cancelrow" type="button" onclick="window.location.href = '/quartosT?option=cancelrow'" class="button1">Cancel</button></td>
