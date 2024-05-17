@@ -41,6 +41,7 @@ import subs_subform as gfsubsub
 import subs_signup as signupsub
 import subs_hoteis as hoteissub
 import subs_quartos as quartossub
+import subs_quartosT as quartosTsub
 import subs_quartosFotos as quartosFsub
 
 @app.route("/")
@@ -113,6 +114,11 @@ def hoteisform(cname='Hotel'):
 def quartosform(cname='Quarto'):
     submenu = request.args.get("subm")
     return quartossub.quartosform(cname,submenu)
+
+@app.route("/quartosT", methods=["post","get"])
+def quartosTform(cname='Quarto'):
+    submenu = request.args.get("subm")
+    return quartosTsub.quartosTform(cname,submenu)
 
 @app.route("/tiposquartos", methods=["post","get"])
 def quartosFotos(cname='TiposQuarto',subm=''):
