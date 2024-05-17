@@ -34,6 +34,7 @@
                                   <select name="_tipoquarto" id="_tipoquarto" {{butedit}} >
                                       {% for valor in TiposQuarto.values() %} 
                                           <option value="{{valor.codigo}}">{{valor.codigo}} - {{TiposQuarto[valor.codigo].nome}} </option>
+                                        
                                       {% endfor %}
                                           <option value="{{obj['_tipoquarto']}}" SELECTED>{{TiposQuarto[obj['_tipoquarto']].codigo}} - {{TiposQuarto[obj['_tipoquarto']].nome}}</option>        
                                   </select>
@@ -48,6 +49,7 @@
                 
                 <td>
                 Foto
+                <img src="{{img}}" width="200">
                 <iframe width="560" height="315" 
                     src="" 
                     title="YouTube video player" frameborder="0" 

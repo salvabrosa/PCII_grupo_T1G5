@@ -9,7 +9,7 @@ class Hotel(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios','video']
+    att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios','_video']
     header = 'Hotel'
     des = ['Codigo','Nome','Localização','Nº de quartos','Contacto','Nº de funcionários','Video']
     
