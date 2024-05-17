@@ -6,7 +6,7 @@ class Hotel(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    auto_number = 0
+    auto_number = 1
     nkey = 1
     
     att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios','video']
@@ -15,6 +15,12 @@ class Hotel(Gclass):
     
     def __init__(self, codigo, nome, localizacao, nquartos, contacto, nfuncionarios, video):
         super().__init__()  
+        if codigo == 'None':    
+            codes = Hotel.getatlist('_codigo')
+            if codes == []:
+                codigo = str('H')+str(1)
+            else:
+                codigo = str('H')+str(int(Hotel.getatlist('_codigo')[-1].replace("H",''))+1)
         self._codigo = codigo
         self._nome = nome
         self._nquartos = nquartos
