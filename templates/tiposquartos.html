@@ -19,7 +19,8 @@
         <button id="exit" type="button" {{butshow}} onclick="window.location.href = '/tiposquartos?option=exit'" class="button1">Exit</button>
         {%endif%}
         <br><br>
-            
+        
+            <form id="form" action="/tiposquartos?option=save" enctype="multipart/form-data" method="post">
             <table>
             <tr>
             <td>
@@ -45,6 +46,7 @@
             </td>
             </tr>                
             </table>
+            </form>
             
             
         <br>

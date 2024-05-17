@@ -111,6 +111,6 @@ def quartosFotosform(app, cname='', submenu=''):
         return render_template("tiposquartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
-                        tipou=session.get("tipouser"), img=img)
+                        tipou=session.get("tipouser"), img=img,submenu=submenu)
     else:
         return render_template("index.html", ulogin=ulogin)

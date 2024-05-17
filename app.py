@@ -115,7 +115,7 @@ def quartosform(cname='Quarto'):
     return quartossub.quartosform(cname,submenu)
 
 @app.route("/tiposquartos", methods=["post","get"])
-def quartosFotos(cname='TiposQuarto'):
+def quartosFotos(cname='TiposQuarto',subm=''):
     submenu = request.args.get("subm")
     return quartosFsub.quartosFotosform(app, cname,submenu)
 
