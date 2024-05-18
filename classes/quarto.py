@@ -8,7 +8,7 @@ class Quarto(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    auto_number = 0
+    auto_number = 1
     nkey = 1
     
     att = ['_codigo','_cod_hotel','_andar','_tipoquarto','_preco_noite','_estado_reserva']
@@ -20,7 +20,14 @@ class Quarto(Gclass):
         
         if cod_hotel in Hotel.lst:
             if tipoquarto in TiposQuarto.lst:
-            
+                
+                if codigo == 'None':    
+                    codes = Quarto.getatlist('_codigo')
+                    if codes == []:
+                        codigo = str(f'{cod_hotel}') + '-' + str(andar) + '-' + str('1')
+                    else:
+                        codigo = str(f'{cod_hotel}') + '-' + str(andar) + '-' + str(int(Quarto.getatlist('_codigo')[-1].split('-')[2] + 1))                        
+                        
                 self._codigo = codigo
                 self._cod_hotel = cod_hotel
                 self._andar = andar
