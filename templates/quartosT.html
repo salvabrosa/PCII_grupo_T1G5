@@ -28,7 +28,7 @@
                     <tr>
                         <form id="formrow" action="/quartosT?option=saverow" method="post">
                         {% for key in attl %}
-                            {% if loop.index == 3 %} 
+                            {% if loop.index == 4 %} 
                             <td><select name="_tipoquarto" id="_tipoquarto"  >
                                 {% for valor in TiposQuarto.values() %}
                                     <option value="{{valor.codigo}}">{{valor.codigo}} - {{TiposQuarto[valor.codigo].nome}} </option>

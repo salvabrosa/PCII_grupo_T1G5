@@ -11,11 +11,11 @@ class Quarto(Gclass):
     auto_number = 0
     nkey = 1
     
-    att = ['_codigo','_cod_hotel','_tipoquarto','_preco_noite','_estado_reserva']
+    att = ['_codigo','_cod_hotel','_andar','_tipoquarto','_preco_noite','_estado_reserva']
     header = 'Quarto'
-    des = ['Codigo do quarto','Codigo do hotel','Tipo do quarto','Preco Noite','Estado da reserva']
+    des = ['Codigo do quarto','Codigo do hotel','Andar','Tipo do quarto','Preco Noite','Estado da reserva']
     
-    def __init__(self, codigo, cod_hotel, tipoquarto, preco_noite,  estado_reserva):
+    def __init__(self, codigo, cod_hotel, andar, tipoquarto, preco_noite,  estado_reserva):
         super().__init__()
         
         if cod_hotel in Hotel.lst:
@@ -23,6 +23,7 @@ class Quarto(Gclass):
             
                 self._codigo = codigo
                 self._cod_hotel = cod_hotel
+                self._andar = andar
                 self._tipoquarto = tipoquarto
                 self._preco_noite = preco_noite
                 self._estado_reserva = estado_reserva
@@ -40,6 +41,9 @@ class Quarto(Gclass):
     @property 
     def cod_hotel(self):
         return self._cod_hotel
+    @property 
+    def andar(self):
+        return self._andar
     @property
     def tipoquarto(self):
         return self._tipoquarto
@@ -59,6 +63,9 @@ class Quarto(Gclass):
             self._cod_hotel = cod_hotel
         else:
             print('Hotel ', cod_hotel, ' not found')
+    @andar.setter
+    def andar(self, andar):
+        self._andar = andar
     @tipoquarto.setter
     def tipoquarto(self, tipoquarto):
         if tipoquarto in TiposQuarto.lst:
