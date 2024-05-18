@@ -43,6 +43,7 @@ import subs_hoteis as hoteissub
 import subs_quartos as quartossub
 import subs_quartosT as quartosTsub
 import subs_quartosFotos as quartosFsub
+import subs_usersform as userssub
 
 @app.route("/")
 def index():
@@ -125,7 +126,11 @@ def quartosFotos(cname='TiposQuarto',subm=''):
     submenu = request.args.get("subm")
     return quartosFsub.quartosFotosform(app, cname,submenu)
 
-  
+@app.route("/users", methods=["post","get"])
+def usersform(cname='Userlogin',subm=''):
+    submenu = request.args.get("subm")
+    return userssub.usersform(cname,submenu)
+
 if __name__ == '__main__':
     app.run(debug=True)
     #app.run()
