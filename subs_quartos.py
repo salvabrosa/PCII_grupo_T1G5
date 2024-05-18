@@ -71,7 +71,7 @@ def quartosform(cname='',submenu=""):
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
-#           obj['_tipoquarto'] = '0'
+            obj['_tipoquarto'] = '0'
         return render_template("quartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
