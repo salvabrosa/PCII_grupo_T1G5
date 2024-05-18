@@ -71,10 +71,12 @@ def quartosform(cname='',submenu=""):
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
+            obj['_cod_hotel'] = 'H1'
             obj['_tipoquarto'] = '0'
         return render_template("quartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
-                        submenu=submenu,tipou=session.get("tipouser"), TiposQuarto = TiposQuarto.obj)
+                        submenu=submenu,tipou=session.get("tipouser"), 
+                        Hotel = Hotel.obj, TiposQuarto = TiposQuarto.obj)
     else:
         return render_template("index.html", ulogin=ulogin)
