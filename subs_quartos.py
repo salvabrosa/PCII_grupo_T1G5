@@ -76,7 +76,8 @@ def quartosform(cname='',submenu=""):
         return render_template("quartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
-                        submenu=submenu,tipou=session.get("tipouser"), 
+                        submenu=submenu,tipou=session.get("tipouser"),
+                        prev_option = prev_option, option = option,
                         Hotel = Hotel.obj, TiposQuarto = TiposQuarto.obj)
     else:
         return render_template("index.html", ulogin=ulogin)
