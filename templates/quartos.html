@@ -31,11 +31,14 @@
                           {%else%} 
                               {% if loop.index == 2 %}            
                                   <select name="_cod_hotel" id="_cod_hotel" {{butedit}} >
-                                      {% for valor in Hotel.values() %} 
-                                          <option value="{{valor.codigo}}">{{valor.codigo}} - {{Hotel[valor.codigo].nome}} </option>
+                                      {%if option == 'edit'%}
+                                          {% for valor in Hotel.values() %} 
+                                              <option value="{{valor.codigo}}">{{valor.codigo}} - {{Hotel[valor.codigo].nome}} </option>
                                         
-                                      {% endfor %}
-                                          <option value="{{obj['_cod_hotel']}}" SELECTED>{{Hotel[obj['_cod_hotel']].codigo}} - {{Hotel[obj['_cod_hotel']].nome}}</option>        
+                                          {% endfor %}
+                                      {%endif%}
+                                    <option value="{{obj['_cod_hotel']}}" SELECTED>{{Hotel[obj['_cod_hotel']].codigo}} - {{Hotel[obj['_cod_hotel']].nome}}</option>        
+                                  
                                   </select>
                               {% elif loop.index == 4 %}            
                                   <select name="_tipoquarto" id="_tipoquarto" {{butedit}} >
