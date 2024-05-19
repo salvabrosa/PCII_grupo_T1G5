@@ -25,27 +25,31 @@ class Quarto(Gclass):
                     codes_quarto_hotel = Hotel.obj[cod_hotel]._listaquartos
                     codes_andar=[]
                     for code in codes_quarto_hotel:
-                        code_separado = code.split('-')
+                        code_separado = code.split(';')
                         if code_separado[0] == andar:
                             codes_andar.append(code_separado[1])
                         
                     if codes_andar == []:
-                        codigo = str('01')
+                        codigo_sem_andar = str('01')
                     else:
                         if int(codes_andar[-1]) + 1 >= 10 :
-                            codigo =  str(int(codes_andar[-1]) + 1)                        
+                            codigo_sem_andar =  str(int(codes_andar[-1]) + 1)                        
                         else:
-                            codigo = '0' + str(int(codes_andar[-1]) + 1)                  
-                    self._codigo = str(f'{cod_hotel}') + '-' + str(andar) + codigo                    
+                            codigo_sem_andar = '0' + str(int(codes_andar[-1]) + 1)
+                            
+                    codigo_no_hotel = str(andar) + codigo_sem_andar 
+                    self._codigo = str(f'{cod_hotel}') + '-' + codigo_no_hotel                     
                 else:
+                    codigo_sem_andar = codigo.split('-')[1].replace(andar,'',1)
                     self._codigo = codigo
+                    
                 self._cod_hotel = cod_hotel
                 self._andar = andar
                 self._tipoquarto = tipoquarto
                 self._preco_noite = preco_noite
                 self._estado_reserva = estado_reserva
-                
-                Hotel.obj[cod_hotel]._listaquartos.append(f'{self.andar}-{codigo}')
+            
+                Hotel.obj[cod_hotel]._listaquartos.append(f'{self.andar};{codigo_sem_andar}')
         
                 Quarto.obj[self._codigo] = self
                 Quarto.lst.append(self._codigo)
@@ -97,6 +101,3 @@ class Quarto(Gclass):
     @estado_reserva.setter 
     def estado_reserva(self, estado_reserva):
         self._estado_reserva = estado_reserva
-        
-        
-    
