@@ -22,21 +22,33 @@ class Quarto(Gclass):
             if tipoquarto in TiposQuarto.lst:
                 
                 if codigo == 'None':    
-                    codes = Quarto.getatlist('_codigo')
-                    if codes == []:
-                        codigo = str(f'{cod_hotel}') + '-' + str(andar) + '-' + str('1')
-                    else:
-                        codigo = str(f'{cod_hotel}') + '-' + str(andar) + '-' + str(int(Quarto.getatlist('_codigo')[-1].split('-')[2] + 1))                        
+                    codes_quarto_hotel = Hotel.obj[cod_hotel]._listaquartos
+                    codes_andar=[]
+                    for code in codes_quarto_hotel:
+                        code_separado = code.split('-')
+                        if code_separado[0] == andar:
+                            codes_andar.append(code_separado[1])
                         
-                self._codigo = codigo
+                    if codes_andar == []:
+                        codigo = str('01')
+                    else:
+                        if int(codes_andar[-1]) + 1 >= 10 :
+                            codigo =  str(int(codes_andar[-1]) + 1)                        
+                        else:
+                            codigo = '0' + str(int(codes_andar[-1]) + 1)                  
+                    self._codigo = str(f'{cod_hotel}') + '-' + str(andar) + codigo                    
+                else:
+                    self._codigo = codigo
                 self._cod_hotel = cod_hotel
                 self._andar = andar
                 self._tipoquarto = tipoquarto
                 self._preco_noite = preco_noite
                 self._estado_reserva = estado_reserva
+                
+                Hotel.obj[cod_hotel]._listaquartos.append(f'{self.andar}-{codigo}')
         
-                Quarto.obj[codigo] = self
-                Quarto.lst.append(codigo)
+                Quarto.obj[self._codigo] = self
+                Quarto.lst.append(self._codigo)
             else:
                 print('Tipos ', tipoquarto, ' not found')
         else:
@@ -85,3 +97,6 @@ class Quarto(Gclass):
     @estado_reserva.setter 
     def estado_reserva(self, estado_reserva):
         self._estado_reserva = estado_reserva
+        
+        
+    

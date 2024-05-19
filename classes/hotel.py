@@ -29,6 +29,8 @@ class Hotel(Gclass):
         self._nfuncionarios = nfuncionarios
         self._video = video
         
+        self._listaquartos = []
+        
         Hotel.obj[codigo] = self
         Hotel.lst.append(codigo)
         
@@ -57,7 +59,9 @@ class Hotel(Gclass):
     @property 
     def maps_lugar(self):
         return self._localizacao.replace(' ','+')
-    
+    @property 
+    def listaquartos(self):
+        return self._listaquartos
     @codigo.setter 
     def codigo(self, codigo):
         self._codigo = codigo

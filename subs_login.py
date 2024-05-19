@@ -21,10 +21,23 @@ def chklogin():
     user = request.form["user"]
     password = request.form["password"]
     resul = Userlogin.chk_password(user, password)
-    temp = Userlogin.find(user, "_user")
-    tipou = temp[0].usergroup
     if resul == "Valid":
+        user_obj = Userlogin.obj[user]
         session["user"] = user
-        session["tipouser"] = tipou
-        return render_template("index.html", ulogin=session.get("user"))
-    return render_template("login.html", user=user, password = password, ulogin=session.get("user"),resul = resul)
+        session["tipouser"] = user_obj.usergroup
+        return render_template("index.html", ulogin=session.get("user"), tipou=session.get("tipouser"))
+    
+    return render_template("login.html", user=user, password = password, 
+                           ulogin=session.get("user"),resul = resul)
+
+# def chklogin():
+#     user = request.form["user"]
+#     password = request.form["password"]
+#     resul = Userlogin.chk_password(user, password)
+#     temp = Userlogin.find(user, "_user")
+#     tipou = temp[0].usergroup
+#     if resul == "Valid":
+#         session["user"] = user
+#         session["tipouser"] = tipou
+#         return render_template("index.html", ulogin=session.get("user"))
+#     return render_template("login.html", user=user, password = password, ulogin=session.get("user"),resul = resul)
