@@ -6,7 +6,7 @@ class ReservaQuarto(Gclass):
     lst =list()
     pos = 0
     sortkey = ''
-    auto_number = 0
+    auto_number = 1
     nkey = 1
     
     att = ['_cod_reserva','_diaComeco','_diaFim','_estado_reserva','_cod_quarto','_cod_cliente']
@@ -14,7 +14,15 @@ class ReservaQuarto(Gclass):
     des = ['Codigo da Reserva','Dia de começo','Dia de fim','Estado da reserva','Codigo de quarto','Codigo cliente']
     
     def __init__(self, cod_reserva, diaComeco, diaFim, estado_reserva, cod_quarto, cod_cliente):
-        super().__init__()  
+        super().__init__() 
+        
+        if cod_reserva == 'None':    
+            codes = ReservaQuarto.getatlist('_cod_reserva')
+            if codes == []:
+                cod_reserva = 'rq' + str(1)
+            else:
+                cod_reserva = 'rq' + str(int(ReservaQuarto.getatlist('_cod_reserva')[-1].replace('rq','')) + 1)
+                
         self._cod_reserva = cod_reserva
         self._diaComeco = diaComeco
         self._diaFim = diaFim
@@ -24,7 +32,7 @@ class ReservaQuarto(Gclass):
         
         ReservaQuarto.obj[cod_reserva] = self
         ReservaQuarto.lst.append(cod_reserva)
-        
+
     @property 
     def cod_reserva(self):
         return self._cod_reserva
