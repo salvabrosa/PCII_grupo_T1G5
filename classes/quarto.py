@@ -46,7 +46,11 @@ class Quarto(Gclass):
                 self._cod_hotel = cod_hotel
                 self._andar = andar
                 self._tipoquarto = tipoquarto
-                self._preco_noite = preco_noite
+                
+                if preco_noite == 'None':
+                    self._preco_noite = TiposQuarto.obj[tipoquarto]._preco_noite
+                else:
+                    self._preco_noite = preco_noite
             
                 Hotel.obj[cod_hotel]._lista_quartos.append(f'{self.andar};{codigo_sem_andar}')
         
