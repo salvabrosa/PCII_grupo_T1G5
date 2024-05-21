@@ -98,8 +98,9 @@ def quartosTform(cname='',submenu=""):
                     strobj = "None"
                 else:
                     strobj = request.form[sbl.att[0]]
-                for i in range(1,len(sbl.att)):
+                for i in range(1,len(sbl.att)-1):
                     strobj += ";" + request.form[sbl.att[i]]
+                strobj +=  ";" + "None"                                        
                 print (strobj)
                 objl = sbl.from_string(strobj)
                 #code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
