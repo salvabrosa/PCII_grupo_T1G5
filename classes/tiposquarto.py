@@ -8,14 +8,15 @@ class TiposQuarto(Gclass):
     auto_number = 0
     nkey = 1
     
-    att = ['_codigo','_nome','_foto']
+    att = ['_codigo','_nome','_preco_noite','_foto']
     header = 'Tipos'
-    des = ['Codigo','Tipo','Foto']
-    def __init__(self, codigo, nome, foto):
+    des = ['Codigo','Tipo','Preço por Noite','Foto']
+    def __init__(self, codigo, nome, preco_noite, foto):
         super().__init__()
 
         self._codigo = codigo
         self._nome = nome
+        self._preco_noite = preco_noite
         self._foto = foto
 
         TiposQuarto.obj[codigo] = self
@@ -26,13 +27,20 @@ class TiposQuarto(Gclass):
         return self._codigo
     @property
     def nome(self):
-        return self._nome    
+        return self._nome   
+    @property
+    def preco_noite(self):
+        return self._preco_noite
     @property
     def foto(self):
         return self._foto
+    
     @nome.setter
     def nome(self, nome):
         self._nome = nome
+    @preco_noite.setter
+    def preco_noite(self, preco_noite):
+        self._preco_noite = preco_noite
     @foto.setter
     def foto(self, foto):
         self._foto = foto
