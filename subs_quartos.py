@@ -81,7 +81,7 @@ def quartosform(cname='',submenu=""):
                 obj[att] = ""
             obj['_cod_hotel'] = 'H1'
             obj['_tipoquarto'] = '1'
-            obj['_preco_noite'] = 'None'
+            obj['_preco_noite'] = ''
             
         return render_template("quartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
