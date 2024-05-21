@@ -46,6 +46,8 @@ def quartosform(cname='',submenu=""):
             for i in range(cl.auto_number,len(cl.att)-1):
                 att = cl.att[i]
                 setattr(obj, att, request.form[att])
+            # DINAMICO PRECO DE QUARTO
+            setattr(obj, cl.att[-1], TiposQuarto.obj[obj._tipoquarto]._preco_noite)
             cl.update(getattr(obj, cl.att[0]))
         else:
             if option == "edit":
