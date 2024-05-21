@@ -65,11 +65,16 @@ def quartosFotosform(app, cname='', submenu=''):
                 
             for i in range(cl.auto_number,len(cl.att)):
                 att = cl.att[i]
-                if att != '_foto':
-                    setattr(obj, att, request.form[att])
-                else:
+                if att == '_preco_noite':
+                    setattr(obj, att, request.form[att])  
+                    # PARA QUE MUDE OS PRECOS DOS QUARTOS QUANDO MUDO O PRECO DO TIPO DE QUARTO
+                    for quarto in Quarto.find(obj.codigo, '_tipoquarto'):  #ENCONTRAR OS QUARTOS COM O CODIGO DO TIPO DE QUARTO
+                        setattr(quarto, att, request.form[att])                        
+                elif att == '_foto' :
                     setattr(obj, att, foto)
-            cl.update(getattr(obj, cl.att[0]))
+                else:
+                    setattr(obj, att, request.form[att])
+            cl.update(getattr(obj, cl.att[0]))        
         else:
             if option == "edit":
                 butshow = "disabled"
