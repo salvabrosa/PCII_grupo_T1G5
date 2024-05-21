@@ -13,7 +13,7 @@ class Quarto(Gclass):
     
     att = ['_codigo','_cod_hotel','_andar','_tipoquarto','_preco_noite',]
     header = 'Quarto'
-    des = ['Codigo do quarto','Codigo do hotel','Andar','Tipo do quarto','Preco Noite']
+    des = ['Codigo do quarto','Codigo do hotel','Andar do quarto','Tipo do quarto','Preco Noite']
     
     def __init__(self, codigo, cod_hotel, andar, tipoquarto, preco_noite ):
         super().__init__()
