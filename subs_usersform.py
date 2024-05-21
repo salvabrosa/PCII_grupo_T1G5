@@ -18,7 +18,7 @@ prev_option = ""
 
 def usersform(cname='',submenu=""):
     global prev_option
-    ulogin=session.get("user")
+    ulogin=session.get("tipouser")
     if (ulogin != None):
         cl = eval(cname)
         butshow = "enabled"
@@ -30,7 +30,10 @@ def usersform(cname='',submenu=""):
             else:
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)):
-                strobj += ";" + request.form[cl.att[i]]
+                if cl.att[i] == '_password':
+                    strobj += ";" + Userlogin.set_password(request.form[cl.att[i]])
+                else:
+                   strobj += ";" + request.form[cl.att[i]]
             obj = cl.from_string(strobj)
             cl.insert(getattr(obj, cl.att[0]))
             cl.last()
@@ -42,7 +45,7 @@ def usersform(cname='',submenu=""):
                 if att != "_password":
                     setattr(obj, att, request.form[att])
                 else:                    
-                    setattr(obj, "_password", Userlogin.set_passwordrequest.form["password"])
+                    setattr(obj, "_password", Userlogin.set_password(request.form[cl.att[i]]))
             cl.update(getattr(obj, cl.att[0]))
         else:
             if option == "edit":
