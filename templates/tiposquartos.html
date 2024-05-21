@@ -41,8 +41,9 @@
                 {% else %}
                     <h1>Sem foto</h1>
                 {% endif %}
+                {% if prev_option == 'insert' or prev_option == 'edit' %}
                 <br> <input name="img" {{butedit}} type="file"/>
-            
+                {% endif %}
             </td>
             </tr>                
             </table>

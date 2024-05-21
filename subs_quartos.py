@@ -5,6 +5,9 @@
 #objective: subs_gform.py
 
 """""
+from werkzeug.utils import secure_filename
+import os
+
 from flask import Flask, render_template, request, session
 from classes.hotel import Hotel
 from classes.quarto import Quarto
@@ -15,9 +18,11 @@ from classes.userlogin import Userlogin
 from classes.tiposquarto import TiposQuarto
 
 prev_option = ""
+img = ""
 
 def quartosform(cname='',submenu=""):
     global prev_option
+    global img
     ulogin=session.get("user")
     if (ulogin != None):
         cl = eval(cname)
