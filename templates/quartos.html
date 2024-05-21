@@ -28,8 +28,7 @@
                           <label for="{{key}}">{{des[loop.index-1]}}:</label>
                           {% if loop.index == 1 and butedit == 'enabled' and auto_number == 1 %}
                               <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
-                          {% elif loop.index == 5  %}
-                              <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
+                          
                           {%else%} 
                               {% if loop.index == 2 %}            
                                   <select name="_cod_hotel" id="_cod_hotel" {{butedit}} >
@@ -49,6 +48,9 @@
                                       {% endfor %}
                                           <option value="{{obj['_tipoquarto']}}" SELECTED>{{TiposQuarto[obj['_tipoquarto']].codigo}} - {{TiposQuarto[obj['_tipoquarto']].nome}}</option>        
                                   </select>
+                                  
+                              {% elif loop.index == 5  %}
+                                  <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
                                   
                               {%else%}
                                   <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>

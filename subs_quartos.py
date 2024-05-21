@@ -34,15 +34,16 @@ def quartosform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
-            for i in range(1,len(cl.att)):
+            for i in range(1,len(cl.att)-1):
                 strobj += ";" + request.form[cl.att[i]]
+            strobj += ';None'
             obj = cl.from_string(strobj)
             cl.insert(getattr(obj, cl.att[0]))
             cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
-            for i in range(cl.auto_number,len(cl.att)):
+            for i in range(cl.auto_number,len(cl.att)-1):
                 att = cl.att[i]
                 setattr(obj, att, request.form[att])
             cl.update(getattr(obj, cl.att[0]))
@@ -78,6 +79,8 @@ def quartosform(cname='',submenu=""):
                 obj[att] = ""
             obj['_cod_hotel'] = 'H1'
             obj['_tipoquarto'] = '1'
+            obj['_preco_noite'] = 'None'
+            
         return render_template("quartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
