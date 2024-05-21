@@ -11,11 +11,11 @@ class Quarto(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_codigo','_cod_hotel','_andar','_tipoquarto','_preco_noite','_estado_reserva']
+    att = ['_codigo','_cod_hotel','_andar','_tipoquarto','_preco_noite',]
     header = 'Quarto'
-    des = ['Codigo do quarto','Codigo do hotel','Andar','Tipo do quarto','Preco Noite','Estado da reserva']
+    des = ['Codigo do quarto','Codigo do hotel','Andar','Tipo do quarto','Preco Noite']
     
-    def __init__(self, codigo, cod_hotel, andar, tipoquarto, preco_noite,  estado_reserva):
+    def __init__(self, codigo, cod_hotel, andar, tipoquarto, preco_noite, ):
         super().__init__()
         
         if cod_hotel in Hotel.lst:
@@ -47,7 +47,6 @@ class Quarto(Gclass):
                 self._andar = andar
                 self._tipoquarto = tipoquarto
                 self._preco_noite = preco_noite
-                self._estado_reserva = estado_reserva
             
                 Hotel.obj[cod_hotel]._lista_quartos.append(f'{self.andar};{codigo_sem_andar}')
         
@@ -73,9 +72,6 @@ class Quarto(Gclass):
     @property 
     def preco_noite(self):
         return self._preco_noite
-    @property 
-    def estado_reserva(self):
-        return self._estado_reserva
     
     @codigo.setter
     def codigo(self, codigo):
@@ -98,6 +94,3 @@ class Quarto(Gclass):
     @preco_noite.setter 
     def preco_noite(self, preco_noite):
         self._preco_noite = preco_noite  
-    @estado_reserva.setter 
-    def estado_reserva(self, estado_reserva):
-        self._estado_reserva = estado_reserva
