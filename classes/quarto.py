@@ -15,7 +15,7 @@ class Quarto(Gclass):
     header = 'Quarto'
     des = ['Codigo do quarto','Codigo do hotel','Andar','Tipo do quarto','Preco Noite']
     
-    def __init__(self, codigo, cod_hotel, andar, tipoquarto, preco_noite, ):
+    def __init__(self, codigo, cod_hotel, andar, tipoquarto, preco_noite ):
         super().__init__()
         
         if cod_hotel in Hotel.lst:
