@@ -9,11 +9,11 @@ class Hotel(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_codigo','_nome','_localizacao','_nquartos','_contacto','_nfuncionarios','_video']
+    att = ['_codigo','_nome','_localizacao','_nandares','_nquartos','_contacto','_nfuncionarios','_video']
     header = 'Hotel'
-    des = ['Codigo','Nome','Localização','Nº de quartos','Contacto','Nº de funcionários','Video']
+    des = ['Codigo','Nome','Localização','Nº de andares','Nº de quartos','Contacto','Nº de funcionários','Video']
     
-    def __init__(self, codigo, nome, localizacao, nquartos, contacto, nfuncionarios, video):
+    def __init__(self, codigo, nome, localizacao, nandares, nquartos, contacto, nfuncionarios, video):
         super().__init__()  
         if codigo == 'None':    
             codes = Hotel.getatlist('_codigo')
@@ -25,11 +25,12 @@ class Hotel(Gclass):
         self._nome = nome
         self._nquartos = nquartos
         self._localizacao = localizacao
-        self._contacto = contacto
+        self._nandares = nandares
         self._nfuncionarios = nfuncionarios
+        self._contacto = contacto        
         self._video = video
         
-        self._listaquartos = []
+        self._lista_quartos = []
         
         Hotel.obj[codigo] = self
         Hotel.lst.append(codigo)
@@ -56,12 +57,26 @@ class Hotel(Gclass):
     @property 
     def video(self):
         return self._video
+    # PARA O LINK DO MAPS 
     @property 
     def maps_lugar(self):
         return self._localizacao.replace(' ','+')
+    #PARA QUARTO AUTONUMBER
     @property 
-    def listaquartos(self):
-        return self._listaquartos
+    def lista_quartos(self):
+        return self._lista_quartos
+    #PARA ANDAR DO QUARTO
+    @property 
+    def nandares(self):
+        return self._nandares
+    # PARA LISTA DE ANDARES NO FORM QUARTOS
+    @property 
+    def lista_andares(self):
+        lista_andares = []
+        for i in range(1,self.nandares+1):
+            lista_andares.append(i)
+        return lista_andares
+    
     @codigo.setter 
     def codigo(self, codigo):
         self._codigo = codigo

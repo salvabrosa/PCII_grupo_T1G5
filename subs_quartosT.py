@@ -140,6 +140,6 @@ def quartosTform(cname='',submenu=""):
                     ulogin=session.get("user"),objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att,
                     submenu=submenu, 
-                    Hotel = Hotel.obj,TiposQuarto =TiposQuarto.obj)
+                    Hotel = Hotel.obj,TiposQuarto = TiposQuarto.obj)
     else:
         return render_template("index.html", ulogin=ulogin)

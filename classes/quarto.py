@@ -22,7 +22,7 @@ class Quarto(Gclass):
             if tipoquarto in TiposQuarto.lst:
                 
                 if codigo == 'None':    
-                    codes_quarto_hotel = Hotel.obj[cod_hotel]._listaquartos
+                    codes_quarto_hotel = Hotel.obj[cod_hotel]._lista_quartos
                     codes_andar=[]
                     for code in codes_quarto_hotel:
                         code_separado = code.split(';')
@@ -49,7 +49,7 @@ class Quarto(Gclass):
                 self._preco_noite = preco_noite
                 self._estado_reserva = estado_reserva
             
-                Hotel.obj[cod_hotel]._listaquartos.append(f'{self.andar};{codigo_sem_andar}')
+                Hotel.obj[cod_hotel]._lista_quartos.append(f'{self.andar};{codigo_sem_andar}')
         
                 Quarto.obj[self._codigo] = self
                 Quarto.lst.append(self._codigo)
