@@ -45,6 +45,7 @@ import subs_quartosT as quartosTsub
 import subs_quartosFotos as quartosFsub
 import subs_usersform as userssub
 import subs_reservaquarto as rqsub
+import subs_faturaform as ffsub
 
 @app.route("/")
 def index():
@@ -136,6 +137,11 @@ def usersform(cname='Userlogin',subm=''):
 def reservaquartoform(cname='ReservaQuarto',subm=''):
     submenu = request.args.get("subm")
     return rqsub.reservaquartoform(cname,submenu)
+
+@app.route("/faturaform", methods=["post","get"])
+def faturaform(cname="Fatura_FaturaReserva"):
+    submenu = request.args.get("subm")
+    return ffsub.faturaform(cname,submenu)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
