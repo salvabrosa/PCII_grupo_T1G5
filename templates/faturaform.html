@@ -72,6 +72,13 @@
         </div>
         {% endif %}
         
+        {% if diferentes_codigos_cliente == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Não foi possível criar a FaturaReserva. A Fatura e a Reserva têm de ter os mesmos codigos de cliente
+        </div>
+        {% endif %}
+        
         <table>
             <tr>
               {% for header in desl %}

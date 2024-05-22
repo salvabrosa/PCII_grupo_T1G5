@@ -28,6 +28,7 @@ def faturaform(cname="",submenu=""):
     erro_formato_datas = 0
     falta_reserva = 0
     falta_atributo2 = 0
+    diferentes_codigos_cliente = 0
     if (ulogin != None):
         cl = eval(cnames)
         sbl = eval(scname)
@@ -116,14 +117,15 @@ def faturaform(cname="",submenu=""):
                         if request.form[sbl.att[i]] not in ReservaQuarto.lst:
                             falta_reserva = 1
                             break
-                        #elif request.form[sbl.att[i]] :
-                                                       
+                        if ReservaQuarto.obj[request.form[sbl.att[i]]].codigo_cliente != getattr(obj, cl.att[0]):
+                            diferentes_codigos_cliente = 1
+                            break
                         else:
                             strobj += ";" + request.form[sbl.att[i]]
                     else:
                         strobj += ";" + request.form[sbl.att[i]]
                         
-                if falta_reserva == 0 and falta_atributo2 == 0:
+                else:
                     objl = sbl.from_string(strobj)
                     code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
                     sbl.insert(code)
@@ -151,6 +153,6 @@ def faturaform(cname="",submenu=""):
                     submenu=submenu,
                     user_notfound = user_notfound, falta_atributo = falta_atributo,
                     erro_formato_datas = erro_formato_datas, falta_reserva = falta_reserva,
-                    falta_atributo2=falta_atributo2)
+                    falta_atributo2=falta_atributo2, diferentes_codigos_cliente = diferentes_codigos_cliente)
     else:
         return render_template("index.html", ulogin=ulogin)
