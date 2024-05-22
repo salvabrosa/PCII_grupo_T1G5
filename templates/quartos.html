@@ -13,7 +13,7 @@
         {% if erro_quarto == 1 %}
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          Atenção! Quarto não criado
+          Atenção! Quarto não criado. Verifique os atríbutos inseridos
         </div>
         {% endif %}
         
@@ -46,7 +46,13 @@
                                       {%endif%}
                                           <option value="{{obj['_cod_hotel']}}" SELECTED>{{Hotel[obj['_cod_hotel']].codigo}} - {{Hotel[obj['_cod_hotel']].nome}}</option>        
                                   </select>
-                              
+                                  
+                              {% elif loop.index == 3  %}
+                                  {% if prev_option == 'edit' %}
+                                      <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
+                                  {% else %}
+                                       <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
+                                  {% endif %}
                               {% elif loop.index == 4 %}            
                                   <select name="_tipoquarto" id="_tipoquarto" {{butedit}} >
                                       {% for valor in TiposQuarto.values() %} 

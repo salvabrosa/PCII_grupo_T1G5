@@ -5,7 +5,7 @@ class TiposQuarto(Gclass):
     lst = list()
     pos = 0
     sortkey = ''
-    auto_number = 0
+    auto_number = 1
     nkey = 1
     
     att = ['_codigo','_nome','_preco_noite','_foto']
@@ -13,7 +13,12 @@ class TiposQuarto(Gclass):
     des = ['Codigo','Tipo','Preço por Noite','Foto']
     def __init__(self, codigo, nome, preco_noite, foto):
         super().__init__()
-
+        if codigo == 'None':    
+            codes = TiposQuarto.getatlist('_codigo')
+            if codes == []:
+                codigo = str(1)
+            else:
+                codigo = str(max(map(int,TiposQuarto.getatlist('_cod_fatura'))) + 1)
         self._codigo = codigo
         self._nome = nome
         self._preco_noite = preco_noite
