@@ -73,7 +73,7 @@ class Hotel(Gclass):
     @property 
     def lista_andares(self):
         lista_andares = []
-        for i in range(1,self.nandares+1):
+        for i in range(1,int(self.nandares)+1):
             lista_andares.append(i)
         return lista_andares
     

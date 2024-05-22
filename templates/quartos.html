@@ -10,6 +10,13 @@
         <h1>{{header}}</h1>
         <br>
         
+        {% if erro_quarto == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Quarto não criado
+        </div>
+        {% endif %}
+        
         {% if tipou == "admin" %}
         <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/quartos?option=edit'" class="button1">Edit</button>
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/quartos?option=delete'" class="button1">Delete</button>
@@ -84,6 +91,15 @@
         <button id="next" type="button" {{butshow}} onclick="window.location.href = '/quartos?option=next'" class="button1">Next</button>
         <button id="last" type="button" {{butshow}} onclick="window.location.href = '/quartos?option=last'" class="button1">Last</button>
         {%endif%}    
+        
+        
+        <br><br>
+        <br><br>
+        
+        
+        <br><br>
+        <br><br>
+        <br><br>
     </div>
 
 {% endblock %}

@@ -24,6 +24,7 @@ def quartosform(cname='',submenu=""):
     global prev_option
     global img
     ulogin=session.get("user")
+    erro_quarto = 0
     if (ulogin != None):
         cl = eval(cname)
         butshow = "enabled"
@@ -35,11 +36,19 @@ def quartosform(cname='',submenu=""):
             else:
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)-1):
-                strobj += ";" + request.form[cl.att[i]]
+                # ERRO NA CRIAÇÃO DO QUARTO 
+                if cl.att[i] == '_andar':
+                    if request.form[cl.att[i]] == 'None' or request.form[cl.att[i]] not in Hotel.obj[request.form['_cod_hotel']].lista_andares:
+                        erro_quarto = 1
+                    else:
+                        strobj += ";" + request.form[cl.att[i]]
+                else:
+                    strobj += ";" + request.form[cl.att[i]]
             strobj += ';None'
-            obj = cl.from_string(strobj)
-            cl.insert(getattr(obj, cl.att[0]))
-            cl.last()
+            if erro_quarto == 0:
+                obj = cl.from_string(strobj)
+                cl.insert(getattr(obj, cl.att[0]))
+                cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
@@ -81,13 +90,14 @@ def quartosform(cname='',submenu=""):
                 obj[att] = ""
             obj['_cod_hotel'] = 'H1'
             obj['_tipoquarto'] = '1'
-            obj['_preco_noite'] = ''
+            obj['_preco_noite'] = ''            
             
         return render_template("quartos.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
                         submenu=submenu,tipou=session.get("tipouser"),
                         prev_option = prev_option, option = option,
-                        Hotel = Hotel.obj, TiposQuarto = TiposQuarto.obj)
+                        Hotel = Hotel.obj, TiposQuarto = TiposQuarto.obj,
+                        erro_quarto = erro_quarto)
     else:
         return render_template("index.html", ulogin=ulogin)
