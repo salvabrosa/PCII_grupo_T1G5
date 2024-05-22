@@ -9,71 +9,83 @@ class ReservaQuarto(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_cod_reserva','_diaComeco','_diaFim','_estado_reserva','_cod_quarto','_cod_cliente']
+    att = ['_codigo','_codigo_cliente','_checkin','_checkout','_nadultos','_ncrianças','_pequenoalmoco','_estado_reserva','_cod_quarto']
     header = 'ReservaQuarto'
-    des = ['Codigo da Reserva','Dia de começo','Dia de fim','Estado da reserva','Codigo de quarto','Codigo cliente']
+    des = ['Codigo','Codigo do cliente','Check-in','Check-out','Nº de adultos','Nº de crianças','Pequeno Almoço','Estado da reserva','Codigo do quarto']
     
-    def __init__(self, cod_reserva, diaComeco, diaFim, estado_reserva, cod_quarto, cod_cliente):
+    def __init__(self, codigo, codigo_cliente, checkin, checkout, nadultos, ncriancas, pequenoalmoco, estado_reserva, cod_quarto):
         super().__init__() 
         
-        if cod_reserva == 'None':    
-            codes = ReservaQuarto.getatlist('_cod_reserva')
+        if codigo == 'None':    
+            codes = ReservaQuarto.getatlist('_codigo')
             if codes == []:
-                cod_reserva = 'RQ' + str(1)
+                codigo = 'RQ' + str(1)
             else:
-                cod_reserva = 'RQ' + str(int(ReservaQuarto.getatlist('_cod_reserva')[-1].replace('RQ','')) + 1)
+                codigo = 'RQ' + str(int(ReservaQuarto.getatlist('_codigo')[-1].replace('RQ','')) + 1)
                 
-        self._cod_reserva = cod_reserva
-        self._diaComeco = diaComeco
-        self._diaFim = diaFim
+        self._codigo = codigo
+        self._codigo_cliente = codigo_cliente
+        self._checkin = checkin
+        self._checkout = checkout
+        self._nadultos = nadultos
+        self._ncriancas = ncriancas
+        self._pequenoalmoco = pequenoalmoco
         self._estado_reserva=estado_reserva
         self._cod_quarto = cod_quarto
-        self._cod_cliente = cod_cliente
         
-        ReservaQuarto.obj[cod_reserva] = self
-        ReservaQuarto.lst.append(cod_reserva)
+        ReservaQuarto.obj[codigo] = self
+        ReservaQuarto.lst.append(codigo)
 
     @property 
-    def cod_reserva(self):
-        return self._cod_reserva
+    def codigo(self):
+        return self._codigo
     @property 
-    def diaComeco(self):
-        return self._diaComeco
+    def codigo_cliente(self):
+        return self._codigo_cliente
     @property 
-    def diaFim(self):
-        return self._diaFim
+    def checkin(self):
+        return self._checkin
+    @property 
+    def checkout(self):
+        return self._checkout
+    @property 
+    def nadultos(self):
+        return self._nadultos
+    @property 
+    def ncriancas(self):
+        return self._ncriancas
+    @property 
+    def pequenoalmoco(self):
+        return self._pequenoalmoco   
     @property 
     def estado_reserva(self):
         return self._estado_reserva
     @property 
     def cod_quarto(self):
         return self._cod_quarto
-    @property 
-    def cod_cliente(self):
-        return self._cod_cliente
-    @property
-    def numeroNoites(self):
-        diferença=self._diaFim-self._diaComeco
-        return diferença
     
-    @cod_reserva.setter
-    def cod_reserva(self, cod_reserva):
-        self._cod_reserva = cod_reserva
-    @diaComeco.setter
-    def diaComeco(self, diaComeco):
-        self._diaComeco = diaComeco
-    @diaFim.setter
-    def diaFim(self, diaFim):
-        self._diaFim = diaFim
+    @checkin.setter
+    def checkin(self, checkin):
+        self._checkin = checkin
+    @checkout.setter
+    def checkout(self, checkout):
+        self._checkout = checkout
+    @nadultos.setter
+    def nadultos(self, nadultos):
+        self._nadultos = nadultos
+    @ncriancas.setter
+    def ncriancas(self, ncriancas):
+        self._ncriancas = ncriancas
+    @pequenoalmoco.setter
+    def pequenoalmoco(self, pequenoalmoco):
+        self._pequenoalmoco = pequenoalmoco
     @estado_reserva.setter
     def estado_reserva(self, estado_reserva):
         self._estado_reserva = estado_reserva
     @cod_quarto.setter
     def cod_quarto(self, cod_quarto):
         self._cod_quarto = cod_quarto
-    @cod_cliente.setter
-    def cod_cliente(self, cod_cliente):
-        self._cod_cliente = cod_cliente
+
     
     
     

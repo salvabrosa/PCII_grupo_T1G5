@@ -17,18 +17,17 @@ class FaturaReserva(Gclass):
     auto_number = 0
     nkey = 2
     
-    att = ['_cod_fatura','_cod_reserva','_preco','_nreservas']
+    att = ['_cod_fatura','_cod_reserva','_preco']
     header = 'FaturaReserva'
-    des = ['Codigo da Fatura','Codigo da Reserva','Preço','Nº de reservas']
+    des = ['Codigo da Fatura','Codigo da Reserva','Preço']
     
-    def __init__(self, cod_fatura, cod_reserva, preco, nreservas):
+    def __init__(self, cod_fatura, cod_reserva, preco):
         super().__init__() 
         if cod_fatura in Fatura.lst:
             if cod_reserva in ReservaQuarto.lst:
                 self._cod_fatura = cod_fatura
                 self._cod_reserva = cod_reserva
-                self._preco = float(preco)
-                self._nreservas = float(nreservas)
+                self._preco = preco
         
                 code = str(cod_fatura) + str(cod_reserva)
                 FaturaReserva.obj[code] = self
@@ -47,13 +46,8 @@ class FaturaReserva(Gclass):
     @property 
     def preco(self):
         return self._preco
-    @property 
-    def nreservas(self):
-        return self._nreservas
     
     @preco.setter
     def quantity(self, preco):
         self._preco = float(preco)
-    @nreservas.setter
-    def nreservas(self, nreservas):
-        self._nreservas = float(nreservas)    
+ 
