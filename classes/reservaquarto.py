@@ -9,7 +9,7 @@ class ReservaQuarto(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_codigo','_codigo_cliente','_checkin','_checkout','_nadultos','_ncrianças','_pequenoalmoco','_estado_reserva','_cod_quarto']
+    att = ['_codigo','_codigo_cliente','_checkin','_checkout','_nadultos','_ncriancas','_pequenoalmoco','_estado_reserva','_cod_quarto']
     header = 'ReservaQuarto'
     des = ['Codigo','Codigo do cliente','Check-in','Check-out','Nº de adultos','Nº de crianças','Pequeno Almoço','Estado da reserva','Codigo do quarto']
     

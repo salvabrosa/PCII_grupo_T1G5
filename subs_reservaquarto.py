@@ -26,6 +26,7 @@ def reservaquartoform(cname='',submenu=""):
         option = request.args.get("option")
         user_notfound = 0
         falta_atributo = 0
+        erro_datas = 0
         if prev_option == 'insert' and option == 'save':
             if (cl.auto_number == 1):
                 strobj = "None"
@@ -39,11 +40,15 @@ def reservaquartoform(cname='',submenu=""):
                         user_notfound = 1
                     else: 
                         strobj += ";" + request.form['_codigo_cliente']
+                elif cl.att[i] == '_codigo_quarto':
+                    if request.form['_codigo_cliente'] not in Userlogin.lst:
+                        user_notfound = 1
+                    else: 
+                        strobj += ";" + request.form['_codigo_cliente']
                 else:
                     strobj += ";" + request.form[cl.att[i]]
             if user_notfound == 0 and falta_atributo == 0:
                 obj = cl.from_string(strobj)
-                cl.insert(getattr(obj, cl.att[0]))
             cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
@@ -82,7 +87,7 @@ def reservaquartoform(cname='',submenu=""):
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
-        return render_template("reservaquarto.html", butshow=butshow, butedit=butedit,
+        return render_template("reservaquarto.html", butshow=butshow, butedit=butedit, 
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
                         submenu=submenu,tipou=session.get("tipouser"),
