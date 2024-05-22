@@ -117,7 +117,7 @@ def faturaform(cname="",submenu=""):
                         if request.form[sbl.att[i]] not in ReservaQuarto.lst:
                             falta_reserva = 1
                             break
-                        if ReservaQuarto.obj[request.form[sbl.att[i]]].codigo_cliente != getattr(obj, cl.att[0]):
+                        if ReservaQuarto.obj[request.form[sbl.att[i]]].codigo_cliente != getattr(obj,'_cod_cliente'):
                             diferentes_codigos_cliente = 1
                             break
                         else:
