@@ -37,7 +37,9 @@ def quartosform(cname='',submenu=""):
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)-1):
                 # ERRO NA CRIAÇÃO DO QUARTO 
-                if cl.att[i] == '_andar':
+                if cl.att[i] == '_cod_hotel':
+                    strobj += ";" + request.form[cl.att[i]]
+                elif cl.att[i] == '_andar':
                     if request.form[cl.att[i]] == 'None' or request.form[cl.att[i]] not in Hotel.obj[request.form['_cod_hotel']].lista_andares:
                         erro_quarto = 1
                     else:

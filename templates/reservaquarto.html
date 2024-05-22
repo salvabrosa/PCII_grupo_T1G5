@@ -24,11 +24,23 @@
         </div>
         {% endif %}
         
+        {% if erro_datas == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Reserva não criado/editado. Erro nas datas inseridas.
+        </div>
+        {% endif %}
+        
+        {% if erro_formato_datas == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Reserva não criada. Erro na formatação das datas.
+        </div>
+        {% endif %}
+        
         {% if tipou == "admin" %}
-        {% if cname.lst|length != 0 %}
         <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=edit'" class="button1">Edit</button>
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=delete'" class="button1">Delete</button>
-        {% endif %}
         <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=insert'" class="button1">Insert</button>
         <button id="save" type="submit" form="form" class = "button1" {{butedit}}>Save</button>
         <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/reservaquarto?option=cancel'" class="button1">Cancel</button>
@@ -41,8 +53,19 @@
                   <label for="{{key}}">{{des[loop.index-1]}}:</label>
                   {% if loop.index == 1 and butedit == 'enabled' and auto_number == 1 %}
                       <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
-                  {%else%}                  
-                      <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
+                  {%else%}
+                      {% if loop.index == 7 or loop.index == 8 %}
+                          <select name="{{obj[key]}}" id="{{obj[key]}}" {{butedit}} >
+                              {% if prev_option == 'insert' %}
+                                  {% for valor in ['True','False'] %} 
+                                  <option value="{{obj[key]}}">{{valor}} </option>
+                                  {% endfor %}
+                              {%endif%}
+                                  <option value="{{obj[key]}}" SELECTED>{{cname[obj[key]]}}</option>        
+                          </select>
+                      {% else %}                  
+                          <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
+                      {% endif %}
                   {%endif%}
                   <br><br>
                 {% endfor %}

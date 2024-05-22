@@ -9,11 +9,11 @@ class ReservaQuarto(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_codigo','_codigo_cliente','_checkin','_checkout','_nadultos','_ncriancas','_pequenoalmoco','_estado_reserva','_cod_quarto']
+    att = ['_codigo','_codigo_cliente','_checkin','_checkout','_nadultos','_ncriancas','_pequenoalmoco','_estado_reserva']
     header = 'ReservaQuarto'
-    des = ['Codigo','Codigo do cliente','Check-in','Check-out','Nº de adultos','Nº de crianças','Pequeno Almoço','Estado da reserva','Codigo do quarto']
+    des = ['Codigo','Codigo do cliente','Check-in','Check-out','Nº de adultos','Nº de crianças','Pequeno Almoço','Estado da reserva']
     
-    def __init__(self, codigo, codigo_cliente, checkin, checkout, nadultos, ncriancas, pequenoalmoco, estado_reserva, cod_quarto):
+    def __init__(self, codigo, codigo_cliente, checkin, checkout, nadultos, ncriancas, pequenoalmoco, estado_reserva):
         super().__init__() 
         
         if codigo == 'None':    
@@ -31,7 +31,6 @@ class ReservaQuarto(Gclass):
         self._ncriancas = ncriancas
         self._pequenoalmoco = pequenoalmoco
         self._estado_reserva = estado_reserva
-        self._cod_quarto = cod_quarto
         
         ReservaQuarto.obj[codigo] = self
         ReservaQuarto.lst.append(codigo)
@@ -60,9 +59,6 @@ class ReservaQuarto(Gclass):
     @property 
     def estado_reserva(self):
         return self._estado_reserva
-    @property 
-    def cod_quarto(self):
-        return self._cod_quarto
     
     @checkin.setter
     def checkin(self, checkin):
@@ -82,6 +78,3 @@ class ReservaQuarto(Gclass):
     @estado_reserva.setter
     def estado_reserva(self, estado_reserva):
         self._estado_reserva = estado_reserva
-    @cod_quarto.setter
-    def cod_quarto(self, cod_quarto):
-        self._cod_quarto = cod_quarto
