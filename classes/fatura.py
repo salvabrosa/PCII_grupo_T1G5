@@ -19,9 +19,9 @@ class Fatura(Gclass):
         if cod_fatura == 'None':    
             codes = Fatura.getatlist('_cod_fatura')
             if codes == []:
-                cod_fatura = str(1)
+                cod_fatura = 'F' + str(1)
             else:
-                cod_fatura = str(max(map(int,Fatura.getatlist('_cod_fatura'))) + 1)
+                cod_fatura = 'F' + str(int(Fatura.getatlist('_cod_fatura')[-1].replace('F','')) + 1)
         # Object attributes
         # Check the customer referential integrity
         if cod_cliente in Userlogin.lst:

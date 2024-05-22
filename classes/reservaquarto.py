@@ -19,9 +19,9 @@ class ReservaQuarto(Gclass):
         if cod_reserva == 'None':    
             codes = ReservaQuarto.getatlist('_cod_reserva')
             if codes == []:
-                cod_reserva = 'rq' + str(1)
+                cod_reserva = 'RQ' + str(1)
             else:
-                cod_reserva = 'rq' + str(int(ReservaQuarto.getatlist('_cod_reserva')[-1].replace('rq','')) + 1)
+                cod_reserva = 'RQ' + str(int(ReservaQuarto.getatlist('_cod_reserva')[-1].replace('RQ','')) + 1)
                 
         self._cod_reserva = cod_reserva
         self._diaComeco = diaComeco
