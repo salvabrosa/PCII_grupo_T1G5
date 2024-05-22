@@ -30,6 +30,7 @@ class FaturaReserva(Gclass):
                 self._preco = preco
         
                 code = str(cod_fatura) + str(cod_reserva)
+                
                 FaturaReserva.obj[code] = self
                 FaturaReserva.lst.append(code)
             else:

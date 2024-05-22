@@ -26,6 +26,7 @@ def faturaform(cname="",submenu=""):
     user_notfound = 0
     falta_atributo = 0
     erro_formato_datas = 0
+    falta_reserva = 0
     if (ulogin != None):
         cl = eval(cnames)
         sbl = eval(scname)
@@ -102,14 +103,25 @@ def faturaform(cname="",submenu=""):
             elif option == "addrow":
                 butshow = "disabled"
                 butedit = "disabled"
+                
             elif option == "saverow":
                 obj = cl.current()
                 strobj = getattr(obj, cl.att[0])
                 for i in range(1,len(sbl.att)):
-                    strobj += ";" + request.form[sbl.att[i]]
-                objl = sbl.from_string(strobj)
-                code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
-                sbl.insert(code)
+                    if sbl.att[i] == '_cod_reserva':
+                        if request.form[sbl.att[i]] not in ReservaQuarto.lst:
+                            falta_reserva = 1
+                            break
+                        else:
+                            strobj += ";" + request.form[sbl.att[i]]
+                    else:
+                        strobj += ";" + request.form[sbl.att[i]]
+                        
+                if falta_reserva == 0:
+                    objl = sbl.from_string(strobj)
+                    code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
+                    sbl.insert(code)
+                
             elif option == 'exit':
                 return render_template("index.html", ulogin=session.get("user")) 
         prev_option = option
@@ -132,6 +144,6 @@ def faturaform(cname="",submenu=""):
                     desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                     submenu=submenu,
                     user_notfound = user_notfound, falta_atributo = falta_atributo,
-                    erro_formato_datas = erro_formato_datas)
+                    erro_formato_datas = erro_formato_datas, falta_reserva = falta_reserva)
     else:
         return render_template("index.html", ulogin=ulogin)

@@ -22,8 +22,6 @@ Fatura.read(filename + 'hotel.db')
 ReservaQuarto.read(filename + 'hotel.db')
 FaturaReserva.read(filename + 'hotel.db')
 
-
-
 prev_option = ""
 submenu = ""
 app.secret_key = 'BAD_SECRET_KEY'

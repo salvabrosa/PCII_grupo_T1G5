@@ -57,6 +57,14 @@
     <br>
     <div class="dados">
         <h2>{{headerl}}</h2>
+        
+        {% if falta_reserva == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! A Reserva Não existe.
+        </div>
+        {% endif %}
+        
         <table>
             <tr>
               {% for header in desl %}
