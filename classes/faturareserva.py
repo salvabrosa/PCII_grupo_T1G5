@@ -46,8 +46,3 @@ class FaturaReserva(Gclass):
     @property 
     def preco(self):
         return self._preco
-    
-    @preco.setter
-    def quantity(self, preco):
-        self._preco = float(preco)
- 

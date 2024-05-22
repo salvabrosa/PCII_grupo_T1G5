@@ -19,34 +19,45 @@ prev_option = ""
 def usersform(cname='',submenu=""):
     global prev_option
     ulogin=session.get("tipouser")
+    falta_atributo = 0
+    user_existe = 0
     if (ulogin != None):
         cl = eval(cname)
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
         if prev_option == 'insert' and option == 'save':
-            if (cl.auto_number == 1):
-                strobj = "None"
+            if request.form[cl.att[0]] in Userlogin.lst:
+                user_existe = 1 
             else:
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)):
-                if cl.att[i] == '_password':
-                    strobj += ";" + Userlogin.set_password(request.form[cl.att[i]])
+                if request.form[cl.att[i]] == '' :
+                    falta_atributo = 1
+                    
                 else:
-                   strobj += ";" + request.form[cl.att[i]]
-            obj = cl.from_string(strobj)
-            cl.insert(getattr(obj, cl.att[0]))
+
+                    if cl.att[i] == '_password':
+                        strobj += ";" + Userlogin.set_password(request.form[cl.att[i]])
+                    else:
+                        strobj += ";" + request.form[cl.att[i]]
+            if falta_atributo == 0 and user_existe == 0:
+                obj = cl.from_string(strobj)
+                cl.insert(getattr(obj, cl.att[0]))
             cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
-            for i in range(cl.auto_number,len(cl.att)):
+            for i in range(1,len(cl.att)):
                 att = cl.att[i]
-                if att != "_password":
+                if request.form[att] == "":
+                    falta_atributo = 1
+                if att == "_password" and falta_atributo == 0:
+                    setattr(obj, "_password", Userlogin.set_password(request.form[cl.att[i]])) 
+                elif falta_atributo == 0:                    
                     setattr(obj, att, request.form[att])
-                else:                    
-                    setattr(obj, "_password", Userlogin.set_password(request.form[cl.att[i]]))
-            cl.update(getattr(obj, cl.att[0]))
+            if falta_atributo == 0:
+                cl.update(getattr(obj, cl.att[0]))
         else:
             if option == "edit":
                 butshow = "disabled"
@@ -80,6 +91,8 @@ def usersform(cname='',submenu=""):
         return render_template("users.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
-                        submenu=submenu,tipou=session.get("tipouser"))
+                        submenu=submenu,tipou=session.get("tipouser"),
+                        prev_option = prev_option, option = option,
+                        falta_atributo = falta_atributo, user_existe = user_existe)
     else:
         return render_template("index.html", ulogin=ulogin)

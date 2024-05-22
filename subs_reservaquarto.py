@@ -24,20 +24,31 @@ def reservaquartoform(cname='',submenu=""):
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
+        user_notfound = 0
+        falta_atributo = 0
         if prev_option == 'insert' and option == 'save':
             if (cl.auto_number == 1):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)):
-                strobj += ";" + request.form[cl.att[i]]
-            obj = cl.from_string(strobj)
-            cl.insert(getattr(obj, cl.att[0]))
+                if request.form[cl.att[i]] == "":
+                    falta_atributo = 1
+                if cl.att[i] == '_codigo_cliente':
+                    if request.form['_codigo_cliente'] not in Userlogin.lst:
+                        user_notfound = 1
+                    else: 
+                        strobj += ";" + request.form['_codigo_cliente']
+                else:
+                    strobj += ";" + request.form[cl.att[i]]
+            if user_notfound == 0 and falta_atributo == 0:
+                obj = cl.from_string(strobj)
+                cl.insert(getattr(obj, cl.att[0]))
             cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
-            for i in range(cl.auto_number,len(cl.att)):
+            for i in range(1,len(cl.att)):
                 att = cl.att[i]
                 setattr(obj, att, request.form[att])
             cl.update(getattr(obj, cl.att[0]))
@@ -74,6 +85,8 @@ def reservaquartoform(cname='',submenu=""):
         return render_template("reservaquarto.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
-                        submenu=submenu,tipou=session.get("tipouser"))
+                        submenu=submenu,tipou=session.get("tipouser"),
+                        prev_option = prev_option, option = option,
+                        user_notfound = user_notfound, falta_atributo = falta_atributo)
     else:
         return render_template("index.html", ulogin=ulogin)

@@ -26,7 +26,7 @@ class Fatura(Gclass):
         # Check the customer referential integrity
         if cod_cliente in Userlogin.lst:
             self._cod_fatura = cod_fatura
-            self._dataemissao = dataemissao
+            self._dataemissao = datetime.date.fromisoformat(dataemissao)
             self._cod_cliente = cod_cliente
         
             Fatura.obj[cod_fatura] = self

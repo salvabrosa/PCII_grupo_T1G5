@@ -25,12 +25,12 @@ class ReservaQuarto(Gclass):
                 
         self._codigo = codigo
         self._codigo_cliente = codigo_cliente
-        self._checkin = checkin
-        self._checkout = checkout
+        self._checkin = datetime.date.fromisoformat(checkin)
+        self._checkout = datetime.date.fromisoformat(checkout)
         self._nadultos = nadultos
         self._ncriancas = ncriancas
         self._pequenoalmoco = pequenoalmoco
-        self._estado_reserva=estado_reserva
+        self._estado_reserva = estado_reserva
         self._cod_quarto = cod_quarto
         
         ReservaQuarto.obj[codigo] = self
@@ -85,10 +85,3 @@ class ReservaQuarto(Gclass):
     @cod_quarto.setter
     def cod_quarto(self, cod_quarto):
         self._cod_quarto = cod_quarto
-
-    
-    
-    
-    
-    
-    
