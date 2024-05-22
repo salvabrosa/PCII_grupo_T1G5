@@ -58,6 +58,13 @@
     <div class="dados">
         <h2>{{headerl}}</h2>
         
+        {% if falta_atributo2 == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! A FaturaReserva náo foi criada. Faltam pelo menos 1 atributo.
+        </div>
+        {% endif %}
+        
         {% if falta_reserva == 1 %}
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
