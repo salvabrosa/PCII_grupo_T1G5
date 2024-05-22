@@ -5,6 +5,7 @@
 #objective: subs_gform.py
 
 """""
+import datetime
 from flask import Flask, render_template, request, session
 from classes.hotel import Hotel
 from classes.quarto import Quarto
@@ -20,24 +21,46 @@ def faturaform(cname="",submenu=""):
     global prev_option
     tlist = cname.split('_')
     cnames = tlist[0]
-    scname = tlist[1]               #+ "_" + tlist[2]
+    scname = tlist[1]   #+ "_" + tlist[2]         
     ulogin=session.get("user")
+    user_notfound = 0
+    falta_atributo = 0
+    erro_formato_datas = 0
     if (ulogin != None):
         cl = eval(cnames)
         sbl = eval(scname)
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
+        
         if prev_option == 'insert' and option == 'save':
             if (cl.auto_number == 1):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)):
-                strobj += ";" + request.form[cl.att[i]]
-            obj = cl.from_string(strobj)
-            cl.insert(getattr(obj, cl.att[0]))
-            cl.last()
+                if request.form[cl.att[i]] == "" :
+                    falta_atributo = 1
+                    break
+                if cl.att[i] == '_cod_cliente':
+                    if request.form[cl.att[i]] not in Userlogin.lst:
+                        user_notfound = 1
+                        break
+                    else: 
+                        strobj += ";" + request.form[cl.att[i]]
+                elif cl.att[i] == '_dataemissao':
+                    try:
+                        datetime.date.fromisoformat(request.form[cl.att[i]])
+                        strobj += ";" + request.form[cl.att[i]]
+                    except ValueError:
+                        erro_formato_datas = 1 
+                else:
+                    strobj += ";" + request.form[cl.att[i]]
+            if user_notfound == 0 and falta_atributo == 0:
+                obj = cl.from_string(strobj)
+                cl.insert(getattr(obj, cl.att[0]))
+                cl.last()
+                
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
@@ -107,6 +130,8 @@ def faturaform(cname="",submenu=""):
                     cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                     ulogin=session.get("user"),objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
-                    submenu=submenu)
+                    submenu=submenu,
+                    user_notfound = user_notfound, falta_atributo = falta_atributo,
+                    erro_formato_datas = erro_formato_datas)
     else:
         return render_template("index.html", ulogin=ulogin)

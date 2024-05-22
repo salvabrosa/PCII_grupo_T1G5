@@ -9,6 +9,28 @@
         <img src="/static/images/{{cname}}.jpg" alt="{{cname}}" width="300" height="200">
         <h1>{{header}}</h1>
         <br>
+        
+        {% if falta_atributo == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Fatura não criado. Falta pelo menos um dos atríbutos.
+        </div>
+        {% endif %}
+        
+        {% if erro_formato_datas == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Fatura não criada. Erro na formatação das datas.
+        </div>
+        {% endif %}
+        
+        {% if user_notfound == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Fatura não criada. Utilizador não encontrado.
+        </div>
+        {% endif %}
+        
         <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/faturaform?option=edit'" class="button1">Edit</button>
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/faturaform?option=delete'" class="button1">Delete</button>
         <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/faturaform?option=insert'" class="button1">Insert</button>
