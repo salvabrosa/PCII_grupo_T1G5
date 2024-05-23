@@ -35,20 +35,17 @@ def reservaquartoform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
-            for i in range(1,len(cl.att)):
+            for i in range(1,len(cl.att)-2):
                 if request.form[cl.att[i]] == "" :
                     falta_atributo = 1
-                    break
                 if cl.att[i] == '_codigo_cliente':
                     if request.form[cl.att[i]] not in Userlogin.lst:
                         user_notfound = 1
-                        break
                     else: 
                         strobj += ";" + request.form[cl.att[i]]
                 elif cl.att[i] == '_codigo_quarto':
                     if request.form[cl.att[i]] not in Userlogin.lst:
                         user_notfound = 1
-                        break
                     else: 
                         strobj += ";" + request.form['_codigo_cliente']
                 elif cl.att[i] == '_checkin':
@@ -56,26 +53,20 @@ def reservaquartoform(cname='',submenu=""):
                         datetime.date.fromisoformat(request.form[cl.att[i]])
                         strobj += ";" + request.form[cl.att[i]]
                     except ValueError:
-                        erro_formato_datas = 1
-                        break
+                        erro_formato_datas = 1    
                 elif cl.att[i] == '_checkout':
                     try:
                         datetime.date.fromisoformat(request.form[cl.att[i]])
                         strobj += ";" + request.form[cl.att[i]]
                     except ValueError:
-                        erro_formato_datas = 1 
-                        break
-                elif request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
-                    erro_datas = 1
-                    break
+                        erro_formato_datas = 1      
                 else:
                     strobj += ";" + request.form[cl.att[i]]
-
-            else:
+            if request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
+                erro_datas = 1
+            if user_notfound == 0 and falta_atributo == 0 and erro_datas == 0 and erro_formato_datas == 0:
                 obj = cl.from_string(strobj)
-                cl.insert(getattr(obj, cl.att[0]))
-                cl.last()
-            
+            cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
@@ -113,6 +104,8 @@ def reservaquartoform(cname='',submenu=""):
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
+            obj['_pequenoalmoco'] = 'False'
+            obj['_estado_reserva'] = 'False'
         return render_template("reservaquarto.html", butshow=butshow, butedit=butedit, 
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
