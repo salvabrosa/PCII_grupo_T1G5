@@ -121,10 +121,7 @@ def faturaform(cname="",submenu=""):
                         elif ReservaQuarto.obj[request.form[sbl.att[i]]].codigo_cliente != getattr(obj,'_cod_cliente'):
                             diferentes_codigos_cliente = 1
                             break
-                        input('')
-                        print(sbl.getlines(getattr(obj, cl.att[0])))
-                        input('')
-                        if getattr(obj, cl.att[0]) + request.form[sbl.att[i]] in sbl.getlines(getattr(obj, cl.att[0])):
+                        elif getattr(obj, cl.att[0]) + request.form[sbl.att[i]] in sbl.getlines(getattr(obj, cl.att[0])):
                             reserva_mesma_fatura = 1
                             break
                         else:
