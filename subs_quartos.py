@@ -24,7 +24,8 @@ def quartosform(cname='',submenu=""):
     global prev_option
     global img
     ulogin=session.get("user")
-    erro_quarto = 0
+    hotel_notfound = 0
+    erro_andar = 0
     if (ulogin != None):
         cl = eval(cname)
         butshow = "enabled"
@@ -38,19 +39,23 @@ def quartosform(cname='',submenu=""):
             for i in range(1,len(cl.att)-1):
                 # ERRO NA CRIAÇÃO DO QUARTO 
                 if cl.att[i] == '_cod_hotel':
-                    strobj += ";" + request.form[cl.att[i]]
+                    if request.form[cl.att[i]] not in Hotel.lst:
+                        hotel_notfound = 1
+                        break
+                    else:
+                        strobj += ";" + request.form[cl.att[i]]
                 elif cl.att[i] == '_andar':
-                    if request.form[cl.att[i]] == 'None' or request.form[cl.att[i]] not in Hotel.obj[request.form['_cod_hotel']].lista_andares:
-                        erro_quarto = 1
+                    if request.form[cl.att[i]] == "" or request.form[cl.att[i]] not in Hotel.obj[request.form['_cod_hotel']].lista_andares:
+                        erro_andar = 1
+                        break
                     else:
                         strobj += ";" + request.form[cl.att[i]]
                 else:
                     strobj += ";" + request.form[cl.att[i]]
-            strobj += ';None'
-            if erro_quarto == 0:
+            else: 
                 obj = cl.from_string(strobj)
                 cl.insert(getattr(obj, cl.att[0]))
-            cl.last()
+                cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
@@ -100,6 +105,6 @@ def quartosform(cname='',submenu=""):
                         submenu=submenu,tipou=session.get("tipouser"),
                         prev_option = prev_option, option = option,
                         Hotel = Hotel.obj, TiposQuarto = TiposQuarto.obj,
-                        erro_quarto = erro_quarto)
+                        hotel_notfound = hotel_notfound, erro_andar = erro_andar)
     else:
         return render_template("index.html", ulogin=ulogin)

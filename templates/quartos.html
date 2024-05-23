@@ -10,10 +10,17 @@
         <h1>{{header}}</h1>
         <br>
         
-        {% if erro_quarto == 1 %}
+         {% if hotel_notfound == 1 %}
+         <div class="alert">
+           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+           Atenção! Quarto não criado. Hotel não encontrado.
+         </div>
+         {% endif %}
+         
+        {% if erro_andar == 1 %}
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          Atenção! Quarto não criado. Verifique os atríbutos inseridos
+          Atenção! Quarto não criado. O andar inserido não pertence à lista de andares do hotel
         </div>
         {% endif %}
         

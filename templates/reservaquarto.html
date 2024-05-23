@@ -10,6 +10,13 @@
         <h1>{{header}}</h1>
         <br>
         
+        {% if falta_atributo == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Reserva não criado/editado. Verifique os atríbutos inseridos.
+        </div>
+        {% endif %}
+        
         {% if user_notfound == 1 %}
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -17,10 +24,10 @@
         </div>
         {% endif %}
         
-        {% if falta_atributo == 1 %}
+        {% if quarto_notfound == 1 %}
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          Atenção! Reserva não criado/editado. Verifique os atríbutos inseridos.
+          Atenção! Reserva não criada. Quarto não encontrado.
         </div>
         {% endif %}
         
@@ -39,7 +46,7 @@
         {% endif %}
         
         {% if tipou == "admin" %}
-        <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=edit'" class="button1">Edit</button>
+<!--    <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=edit'" class="button1">Edit</button>  -->
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=delete'" class="button1">Delete</button>
         <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/reservaquarto?option=insert'" class="button1">Insert</button>
         <button id="save" type="submit" form="form" class = "button1" {{butedit}}>Save</button>
@@ -54,7 +61,7 @@
                   {% if loop.index == 1 and butedit == 'enabled' and auto_number == 1 %}
                       <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
                   {%else%}
-                      {% if loop.index == 10 %}
+                      {% if loop.index == 100 %}
                           <select name="{{obj[key]}}" id="{{obj[key]}}" {{butedit}} >
                               {% if prev_option == 'insert' %}
                                   {% for valor in ['True','False'] %} 

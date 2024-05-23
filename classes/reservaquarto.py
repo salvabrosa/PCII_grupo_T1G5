@@ -9,11 +9,11 @@ class ReservaQuarto(Gclass):
     auto_number = 1
     nkey = 1
     
-    att = ['_codigo','_codigo_cliente','_checkin','_checkout','_nadultos','_ncriancas','_pequenoalmoco','_estado_reserva']
+    att = ['_codigo','_codigo_cliente','_codigo_quarto','_checkin','_checkout','_nadultos','_ncriancas','_pequenoalmoco','_estado_reserva']
     header = 'ReservaQuarto'
-    des = ['Codigo','Codigo do cliente','Check-in','Check-out','Nº de adultos','Nº de crianças','Pequeno Almoço','Estado da reserva']
+    des = ['Codigo','Codigo do cliente','Codigo do quarto','Check-in','Check-out','Nº de adultos','Nº de crianças','Pequeno Almoço','Estado da reserva']
     
-    def __init__(self, codigo, codigo_cliente, checkin, checkout, nadultos, ncriancas, pequenoalmoco, estado_reserva):
+    def __init__(self, codigo, codigo_cliente, codigo_quarto, checkin, checkout, nadultos, ncriancas, pequenoalmoco, estado_reserva):
         super().__init__() 
         
         if codigo == 'None':    
@@ -25,12 +25,17 @@ class ReservaQuarto(Gclass):
                 
         self._codigo = codigo
         self._codigo_cliente = codigo_cliente
+        self._codigo_quarto = codigo_quarto
         self._checkin = datetime.date.fromisoformat(checkin)
         self._checkout = datetime.date.fromisoformat(checkout)
         self._nadultos = nadultos
         self._ncriancas = ncriancas
         self._pequenoalmoco = pequenoalmoco
-        self._estado_reserva = estado_reserva
+        
+        if datetime.date.today() > self.checkout:
+            self._estado_reserva = 'True'
+        else:
+            self._estado_reserva = 'False'
         
         ReservaQuarto.obj[codigo] = self
         ReservaQuarto.lst.append(codigo)
@@ -41,6 +46,9 @@ class ReservaQuarto(Gclass):
     @property 
     def codigo_cliente(self):
         return self._codigo_cliente
+    @property 
+    def codigo_quarto(self):
+        return self._codigo_quarto
     @property 
     def checkin(self):
         return self._checkin

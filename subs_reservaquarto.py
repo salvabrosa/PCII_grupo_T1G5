@@ -27,9 +27,22 @@ def reservaquartoform(cname='',submenu=""):
         butedit = "disabled"
         option = request.args.get("option")
         user_notfound = 0
+        hotel_notfound = 0
         falta_atributo = 0
         erro_datas = 0
         erro_formato_datas = 0
+        quarto_notfound = 0
+        
+        # ESTADO DA RESERVA DINAMICO 
+        for rq in ReservaQuarto.obj.values():
+            if option == 'first' or option == 'previous' or option == 'next' or option == 'last':
+                if datetime.date.today() > rq.checkout:
+                    setattr(rq, '_estado_reserva', 'False')
+                else:
+                    setattr(rq, '_estado_reserva', 'True')
+                cl.update(getattr(rq, cl.att[0]))
+        
+        
         if prev_option == 'insert' and option == 'save':
             if (cl.auto_number == 1):
                 strobj = "None"
@@ -45,12 +58,18 @@ def reservaquartoform(cname='',submenu=""):
                         break
                     else: 
                         strobj += ";" + request.form[cl.att[i]]
+                # elif cl.att[i] == '_codigo_hotel':
+                #     if request.form[cl.att[i]] not in Hotel.lst:
+                #         hotel_notfound = 1
+                #         break
+                #     else: 
+                #         strobj += ";" + request.form[cl.att[i]]
                 elif cl.att[i] == '_codigo_quarto':
-                    if request.form[cl.att[i]] not in Userlogin.lst:
-                        user_notfound = 1
+                    if request.form[cl.att[i]] not in Quarto.lst:
+                        quarto_notfound = 1
                         break
                     else: 
-                        strobj += ";" + request.form['_codigo_cliente']
+                        strobj += ";" + request.form[cl.att[i]]
                 elif cl.att[i] == '_checkin':
                     try:
                         datetime.date.fromisoformat(request.form[cl.att[i]])
@@ -65,12 +84,12 @@ def reservaquartoform(cname='',submenu=""):
                     except ValueError:
                         erro_formato_datas = 1 
                         break
-                elif request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
-                    erro_datas = 1
-                    break
                 else:
                     strobj += ";" + request.form[cl.att[i]]
-
+                if request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
+                    erro_datas = 1
+                    break
+                
             else:
                 obj = cl.from_string(strobj)
                 cl.insert(getattr(obj, cl.att[0]))
@@ -113,12 +132,23 @@ def reservaquartoform(cname='',submenu=""):
             obj = dict()
             for att in cl.att:
                 obj[att] = ""
+                
+        # ESTADO DA RESERVA DINAMICO 
+        if len(ReservaQuarto.lst) != 0 and (option == 'first' or option == 'previous' or option == 'next' or option == 'last'):
+            if datetime.date.today() > obj.checkout:
+                setattr(obj, '_estado_reserva', 'False')
+            else:
+                setattr(obj, '_estado_reserva', 'True')
+            cl.update(getattr(obj, cl.att[0]))
+            
         return render_template("reservaquarto.html", butshow=butshow, butedit=butedit, 
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),auto_number=cl.auto_number,
                         submenu=submenu,tipou=session.get("tipouser"),
                         prev_option = prev_option, option = option,
-                        user_notfound = user_notfound, falta_atributo = falta_atributo, erro_datas = erro_datas,
-                        erro_formato_datas = erro_formato_datas)
+                        user_notfound = user_notfound, quarto_notfound = quarto_notfound,
+                        falta_atributo = falta_atributo,
+                        erro_datas = erro_datas,erro_formato_datas = erro_formato_datas)
+                        #hotel_notfound = hotel_notfound,
     else:
         return render_template("index.html", ulogin=ulogin)

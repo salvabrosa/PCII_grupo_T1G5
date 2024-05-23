@@ -21,6 +21,7 @@ class Quarto(Gclass):
         if cod_hotel in Hotel.lst:
             if tipoquarto in TiposQuarto.lst:
                 
+                #LOGICA AUTONUMBER
                 if codigo == 'None':    
                     codes_quarto_hotel = Hotel.obj[cod_hotel]._lista_quartos
                     codes_andar=[]
