@@ -79,6 +79,13 @@
         </div>
         {% endif %}
         
+        {% if reserva_mesma_fatura == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Não foi possível criar a FaturaReserva. Não pode ter duas reservas com mesmo código para a mesma fatura.
+        </div>
+        {% endif %}
+        
         <table>
             <tr>
               {% for header in desl %}
