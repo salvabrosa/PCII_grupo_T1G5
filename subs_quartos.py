@@ -36,7 +36,7 @@ def quartosform(cname='',submenu=""):
             if (cl.auto_number == 1):
                 strobj = "None"
             else:
-                strobj = request.form[cl.att[0]]
+                strobj = request.form[cl.att[0]]   
             for i in range(1,len(cl.att)-1):
                 # ERRO NA CRIAÇÃO DO QUARTO 
                 if cl.att[i] == '_cod_hotel':
@@ -45,7 +45,7 @@ def quartosform(cname='',submenu=""):
                         break
                     else:
                         strobj += ";" + request.form[cl.att[i]]
-                if cl.att[i] == '_andar':
+                elif cl.att[i] == '_andar':
                     if request.form[cl.att[i]] == "" or int(request.form[cl.att[i]]) not in Hotel.obj[request.form['_cod_hotel']].lista_andares:
                         erro_andar = 1
                         break
@@ -54,7 +54,7 @@ def quartosform(cname='',submenu=""):
                 else:
                     strobj += ";" + request.form[cl.att[i]]
             else: 
-                
+                strobj += ";" + TiposQuarto.obj[request.form['_tipoquarto']]._preco_noite
                 obj = cl.from_string(strobj)
                 cl.insert(getattr(obj, cl.att[0]))
                 cl.last()
