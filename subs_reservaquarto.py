@@ -32,6 +32,7 @@ def reservaquartoform(cname='',submenu=""):
         erro_datas = 0
         erro_formato_datas = 0
         quarto_notfound = 0
+        quarto_reservado = 0
         
         # ESTADO DA RESERVA DINAMICO 
         for rq in ReservaQuarto.obj.values():
@@ -49,7 +50,7 @@ def reservaquartoform(cname='',submenu=""):
             else:
                 strobj = request.form[cl.att[0]]
             for i in range(1,len(cl.att)):
-                if request.form[cl.att[i]] == "" :
+                if request.form[cl.att[i]] == "" and not cl.att[i] == '_estado_reserva':
                     falta_atributo = 1
                     break
                 if cl.att[i] == '_codigo_cliente':
@@ -64,9 +65,18 @@ def reservaquartoform(cname='',submenu=""):
                 #         break
                 #     else: 
                 #         strobj += ";" + request.form[cl.att[i]]
+                
                 elif cl.att[i] == '_codigo_quarto':
+                    
+                    # ENCONTRAR UMA LISTA DE QUARTOS COM RESERVAQUARTOS TRUE
+                    lista_quartosreservados = []
+                    for quarto_obj in ReservaQuarto.find('True','_estado_reserva'):
+                        lista_quartosreservados.append(quarto_obj.codigo_quarto) 
                     if request.form[cl.att[i]] not in Quarto.lst:
                         quarto_notfound = 1
+                        break
+                    if request.form[cl.att[i]] in lista_quartosreservados:
+                        quarto_reservado = 1
                         break
                     else: 
                         strobj += ";" + request.form[cl.att[i]]
@@ -84,6 +94,12 @@ def reservaquartoform(cname='',submenu=""):
                     except ValueError:
                         erro_formato_datas = 1 
                         break
+                elif cl.att[i] == '_estado_reserva':
+                    if  datetime.date.fromisoformat(request.form['_checkout']) > datetime.date.today():
+                        strobj += ";" + 'True'
+                    elif  datetime.date.fromisoformat(request.form['_checkout']) < datetime.date.today():
+                        strobj += ";" + 'True'
+                    
                 else:
                     strobj += ";" + request.form[cl.att[i]]
                 if request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
@@ -140,6 +156,7 @@ def reservaquartoform(cname='',submenu=""):
             else:
                 setattr(obj, '_estado_reserva', 'True')
             cl.update(getattr(obj, cl.att[0]))
+            obj = cl.current()
             
         return render_template("reservaquarto.html", butshow=butshow, butedit=butedit, 
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
@@ -148,7 +165,7 @@ def reservaquartoform(cname='',submenu=""):
                         prev_option = prev_option, option = option,
                         user_notfound = user_notfound, quarto_notfound = quarto_notfound,
                         falta_atributo = falta_atributo,
-                        erro_datas = erro_datas,erro_formato_datas = erro_formato_datas)
-                        #hotel_notfound = hotel_notfound,
+                        erro_datas = erro_datas,erro_formato_datas = erro_formato_datas,
+                        quarto_reservado = quarto_reservado)
     else:
         return render_template("index.html", ulogin=ulogin)

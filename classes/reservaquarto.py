@@ -32,10 +32,7 @@ class ReservaQuarto(Gclass):
         self._ncriancas = ncriancas
         self._pequenoalmoco = pequenoalmoco
         
-        if datetime.date.today() > self.checkout:
-            self._estado_reserva = 'True'
-        else:
-            self._estado_reserva = 'False'
+        self._estado_reserva = estado_reserva
         
         ReservaQuarto.obj[codigo] = self
         ReservaQuarto.lst.append(codigo)

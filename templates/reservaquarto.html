@@ -31,6 +31,13 @@
         </div>
         {% endif %}
         
+        {% if quarto_reservado == 1 %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Atenção! Reserva não criada. Quarto está reservado.
+        </div>
+        {% endif %}
+        
         {% if erro_datas == 1 %}
         <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -61,6 +68,9 @@
                   {% if loop.index == 1 and butedit == 'enabled' and auto_number == 1 %}
                       <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
                   {%else%}
+                      {% if loop.index == 9 %}
+                              <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
+                      {%endif %}
                       {% if loop.index == 100 %}
                           <select name="{{obj[key]}}" id="{{obj[key]}}" {{butedit}} >
                               {% if prev_option == 'insert' %}
