@@ -54,6 +54,7 @@ def quartosform(cname='',submenu=""):
                 else:
                     strobj += ";" + request.form[cl.att[i]]
             else: 
+                
                 obj = cl.from_string(strobj)
                 cl.insert(getattr(obj, cl.att[0]))
                 cl.last()
@@ -65,7 +66,7 @@ def quartosform(cname='',submenu=""):
                 if att != '_andar':
                     setattr(obj, att, request.form[att])
             # DINAMICO PRECO DE QUARTO
-            setattr(obj, '_tipoquarto', TiposQuarto.obj[obj._tipoquarto]._preco_noite)
+            setattr(obj, '_preco_noite', TiposQuarto.obj[obj._tipoquarto]._preco_noite)
             cl.update(getattr(obj, cl.att[0]))
         else:
             if option == "edit":
