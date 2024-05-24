@@ -49,7 +49,7 @@ def reservaquartoform(cname='',submenu=""):
                 strobj = "None"
             else:
                 strobj = request.form[cl.att[0]]
-            for i in range(1,len(cl.att)):
+            for i in range(1,len(cl.att)-1):
                 if request.form[cl.att[i]] == "" and not cl.att[i] == '_estado_reserva':
                     falta_atributo = 1
                     break
@@ -94,11 +94,6 @@ def reservaquartoform(cname='',submenu=""):
                     except ValueError:
                         erro_formato_datas = 1 
                         break
-                elif cl.att[i] == '_estado_reserva':
-                    if  datetime.date.fromisoformat(request.form['_checkout']) > datetime.date.today():
-                        strobj += ";" + 'True'
-                    elif  datetime.date.fromisoformat(request.form['_checkout']) < datetime.date.today():
-                        strobj += ";" + 'True'
                     
                 else:
                     strobj += ";" + request.form[cl.att[i]]
@@ -107,6 +102,12 @@ def reservaquartoform(cname='',submenu=""):
                     break
                 
             else:
+                # ADICIONAR ESTADO DA RESERVA
+                if  datetime.date.fromisoformat(request.form['_checkout']) > datetime.date.today():
+                    strobj += ";" + 'True'
+                elif  datetime.date.fromisoformat(request.form['_checkout']) < datetime.date.today():
+                    strobj += ";" + 'True'
+                
                 obj = cl.from_string(strobj)
                 cl.insert(getattr(obj, cl.att[0]))
                 cl.last()
