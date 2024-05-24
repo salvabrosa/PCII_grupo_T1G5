@@ -51,12 +51,10 @@
             
             
         <br>
-        {% if tipou == "admin" %}
         <button id="first" type="button" {{butshow}} onclick="window.location.href = '/tiposquartos?option=first'" class="button1">First</button>
         <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/tiposquartos?option=previous'" class="button1">Previous</button>
         <button id="next" type="button" {{butshow}} onclick="window.location.href = '/tiposquartos?option=next'" class="button1">Next</button>
-        <button id="last" type="button" {{butshow}} onclick="window.location.href = '/tiposquartos?option=last'" class="button1">Last</button>
-        {%endif%}    
+        <button id="last" type="button" {{butshow}} onclick="window.location.href = '/tiposquartos?option=last'" class="button1">Last</button> 
     </div>
 
 {% endblock %}
