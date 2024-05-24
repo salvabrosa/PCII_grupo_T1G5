@@ -83,13 +83,10 @@
                 </td>
                 
                 <td>
-                Foto
-                <img src="{{ url_for('static', filename='FotosQuartos/' + TiposQuarto[obj['_tipoquarto']].foto + '.jpeg') }}" alt="{{ obj.nome }}">
-                <iframe width="560" height="315" 
-                    src="" 
-                    title="YouTube video player" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                
+                
+                
+                <img src="{{ url_for('static', filename='FotosQuartos/' + TiposQuarto[obj['_tipoquarto']].foto ) }}" alt="{{ obj.nome }}" width="350">
+        
                 </td>
                 
                 
