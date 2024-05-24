@@ -84,7 +84,7 @@
                 
                 <td>
                 Foto
-                <img src="{{TiposQuarto[obj['_tipoquarto']].foto}}" width="200">
+                <img src="{{ url_for('static', filename='FotosQuartos/' + TiposQuarto[obj['_tipoquarto']].foto + '.jpeg') }}" alt="{{ obj.nome }}">
                 <iframe width="560" height="315" 
                     src="" 
                     title="YouTube video player" frameborder="0" 

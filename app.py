@@ -44,6 +44,7 @@ import subs_quartosFotos as quartosFsub
 import subs_usersform as userssub
 import subs_reservaquarto as rqsub
 import subs_faturaform as ffsub
+import subs_mapaReservaform as rmsub
 
 @app.route("/")
 def index():
@@ -101,11 +102,6 @@ def subform(cname=""):
 #     cname = 'Product'
 #     return productFotosub.productFoto(app,cname,submenu)
 
-@app.route("/order/mapa", methods=["post","get"])
-def ordermapa():
-
-    return render_template("uc.html", ulogin=session.get("user"),submenu=submenu)
-
 @app.route("/hoteis", methods=["post","get"])
 def hoteisform(cname='Hotel'):
     submenu = request.args.get("subm")
@@ -140,6 +136,12 @@ def reservaquartoform(cname='ReservaQuarto',subm=''):
 def faturaform(cname="Fatura_FaturaReserva"):
     submenu = request.args.get("subm")
     return ffsub.faturaform(cname,submenu)
+
+@app.route("/reserva/mapa", methods=["post","get"])
+def reservamapa():
+   submenu = request.args.get("subm")
+   cname = ''
+   return rmsub.mapaReservaform(app,cname,submenu)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
