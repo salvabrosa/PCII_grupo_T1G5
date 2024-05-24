@@ -70,8 +70,7 @@
                   {%else%}
                       {% if loop.index == 9 %}
                               <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
-                      {%endif %}
-                      {% if loop.index == 100 %}
+                      {% elif loop.index == 100 %}
                           <select name="{{obj[key]}}" id="{{obj[key]}}" {{butedit}} >
                               {% if prev_option == 'insert' %}
                                   {% for valor in ['True','False'] %} 
