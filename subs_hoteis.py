@@ -64,7 +64,7 @@ def hoteisform(cname='',submenu=""):
             elif option == "last":
                 cl.last()
             elif option == 'exit':
-                return render_template("index.html", ulogin=session.get("user"))
+                return render_template("index.html", ulogin=session.get("user"),tipou=session.get("tipouser"))
         prev_option = option
         obj = cl.current()
         if option == 'insert' or len(cl.lst) == 0:

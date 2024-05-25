@@ -88,7 +88,7 @@ def subform(cname="",submenu=""):
                 code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
                 sbl.insert(code)
             elif option == 'exit':
-                return render_template("index.html", ulogin=session.get("user")) 
+                return render_template("index.html", ulogin=session.get("user"),tipou=session.get("tipouser")) 
         prev_option = option
         obj = cl.current()
         headers = list()

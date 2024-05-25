@@ -101,7 +101,7 @@ def mapaReservaform(app,cname='',submenu=""):
                  
                 
             elif option == 'exit':
-                return render_template("index.html", ulogin=session.get("user"))
+                return render_template("index.html", ulogin=session.get("user"),tipou=session.get("tipouser"))
         
         
         objh = gerah(clh)
