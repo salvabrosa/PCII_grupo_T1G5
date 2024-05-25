@@ -60,9 +60,6 @@ def usersform(cname='',submenu=""):
                     setattr(obj, att, request.form[att])
             if falta_atributo == 0:
                 cl.update(getattr(obj, cl.att[0]))
-            #EDITAR O TIPO DE UTILIZADOR APENAS SE FOR ADMIN
-            if session.get("tipouser") == "admin":
-                setattr(obj, '_usergroup', request.form['_usergroup'])
         else:
             if option == "edit":
                 butshow = "disabled"

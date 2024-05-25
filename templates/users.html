@@ -44,8 +44,8 @@
                   {%else%}        
                       {% if prev_option == 'edit' and loop.index == 1 %}
                           <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/> 
-                      {%elif tipou != "admin" and loop.index == 9%}
-                      <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/> 
+                      {%elif loop.index == 9 and prev_option == 'edit'%}
+                          <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/> 
                       {%else%}         
                       <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
                       {%endif%}
