@@ -52,7 +52,8 @@ class Quarto(Gclass):
                     self._preco_noite = TiposQuarto.obj[tipoquarto]._preco_noite
                 else:
                     self._preco_noite = preco_noite
-            
+                
+                # ADICIONO A LISTA DE QUARTOS DO HOTEL O QUARTONO FORMATO ANDAR;CODSEMANDAR
                 Hotel.obj[cod_hotel]._lista_quartos.append(f'{self.andar};{codigo_sem_andar}')
         
                 Quarto.obj[self._codigo] = self

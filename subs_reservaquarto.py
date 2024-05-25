@@ -149,11 +149,13 @@ def reservaquartoform(cname='',submenu=""):
                 
         # ESTADO DA RESERVA DINAMICO 
         if len(ReservaQuarto.lst) != 0 and (option == 'first' or option == 'previous' or option == 'next' or option == 'last'):
-            if datetime.date.today() > obj.checkout:
-                setattr(obj, '_estado_reserva', 'False')
-            else:
-                setattr(obj, '_estado_reserva', 'True')
-            cl.update(getattr(obj, cl.att[0]))
+            for reserva in ReservaQuarto.obj.values():
+                if datetime.date.today() > reserva.checkout :
+                    setattr(reserva, '_estado_reserva', 'False')
+                    cl.update(getattr(reserva, cl.att[0]))
+                elif datetime.date.today() > reserva.checkin and datetime.date.today() < reserva.checkout:
+                    setattr(reserva, '_estado_reserva', 'True')
+                    cl.update(getattr(reserva, cl.att[0]))
             obj = cl.current()
             
         return render_template("reservaquarto.html", butshow=butshow, butedit=butedit, 
