@@ -29,13 +29,11 @@ app.secret_key = 'BAD_SECRET_KEY'
 upload_folder = os.path.join('static', 'FotosQuartos')
 app.config['UPLOAD'] = upload_folder
 
-
 import subs_login as lsub
 import subs_gform as gfsub
 import subs_gformT as gfTsub
 import subs_hform as gfhsub
 import subs_subform as gfsubsub
-#import subs_productFoto as productFotosub
 import subs_signup as signupsub
 import subs_hoteis as hoteissub
 import subs_quartos as quartossub
@@ -87,20 +85,11 @@ def gformT(cname=''):
 def hform(cname=''):
     submenu = request.args.get("subm")
     return gfhsub.hform(cname,submenu)
-
-
-        
+    
 @app.route("/subform/<cname>", methods=["post","get"])
 def subform(cname=""):
     submenu = request.args.get("subm")
     return gfsubsub.subform(cname,submenu)
-
-
-# @app.route("/productform", methods=["post","get"])
-# def productFoto():
-#     submenu = request.args.get("subm")
-#     cname = 'Product'
-#     return productFotosub.productFoto(app,cname,submenu)
 
 @app.route("/hoteis", methods=["post","get"])
 def hoteisform(cname='Hotel'):
