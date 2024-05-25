@@ -46,7 +46,7 @@ import subs_mapaReservaform as rmsub
 
 @app.route("/")
 def index():
-    return render_template("index.html", ulogin=session.get("user"))
+    return render_template("index.html", ulogin=session.get("user"), tipou=session.get("tipouser"))
     
 @app.route("/login")
 def login():
