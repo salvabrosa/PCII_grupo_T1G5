@@ -27,6 +27,7 @@ def quartosTform(cname='',submenu=""):
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
+        erro_andar = 0
         if prev_option == 'insert' and option == 'save':
             # if (cl.auto_number == 1):
             #     strobj = "None"
@@ -99,15 +100,23 @@ def quartosTform(cname='',submenu=""):
                 else:
                     strobj = request.form[sbl.att[0]]
                 for i in range(1,len(sbl.att)-1):
-                    strobj += ";" + request.form[sbl.att[i]]
-                strobj +=  ";" + "None"                                        
-                print (strobj)
-                objl = sbl.from_string(strobj)
-                #code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
-                code = str(getattr(objl, sbl.att[0]))
-                sbl.insert(code)
+                    if sbl.att[i] == '_andar':
+                        if request.form[sbl.att[i]] == "" or int(request.form[sbl.att[i]]) not in Hotel.obj[request.form['_cod_hotel']].lista_andares:
+                            erro_andar = 1
+                            break
+                        else:
+                            strobj += ";" + request.form[sbl.att[i]]
+                    else:
+                        strobj += ";" + request.form[sbl.att[i]]
+                else: 
+                    strobj += ";" + TiposQuarto.obj[request.form['_tipoquarto']]._preco_noite                        
+                    objl = sbl.from_string(strobj)
+                    code = str(getattr(objl, sbl.att[0]))
+                    sbl.insert(code)
+                    
             elif option == 'exit':
-                return render_template("index.html", ulogin=session.get("user"),tipou=session.get("tipouser")) 
+                return render_template("index.html", ulogin=session.get("user"),tipou=session.get("tipouser"))
+            
         prev_option = option
         # obj = cl.current()
         # headers = list()
@@ -142,6 +151,6 @@ def quartosTform(cname='',submenu=""):
                     objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att,
                     submenu=submenu, 
-                    Hotel = Hotel.obj,TiposQuarto = TiposQuarto.obj)
+                    Hotel = Hotel.obj,TiposQuarto = TiposQuarto.obj, erro_andar = erro_andar)
     else:
         return render_template("index.html", ulogin=ulogin)
