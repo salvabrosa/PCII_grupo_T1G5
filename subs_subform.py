@@ -105,7 +105,8 @@ def subform(cname="",submenu=""):
                 objl.append(sbl.obj[line])
         return render_template("subform.html", butshow=butshow, butedit=butedit,
                     cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                    ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                    ulogin=session.get("user"), tipou=session.get("tipouser"),
+                    objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number,
                     submenu=submenu)
     else:

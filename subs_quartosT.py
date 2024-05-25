@@ -138,7 +138,8 @@ def quartosTform(cname='',submenu=""):
         #             desl=sbl.des, attl=sbl.att, auto_number=cl.auto_number)
         return render_template("quartosT.html", butshow=butshow, butedit=butedit,
                     cname=cname, 
-                    ulogin=session.get("user"),objl=objl,headerl=sbl.header,
+                    ulogin=session.get("user"),tipou=session.get("tipouser"),
+                    objl=objl,headerl=sbl.header,
                     desl=sbl.des, attl=sbl.att,
                     submenu=submenu, 
                     Hotel = Hotel.obj,TiposQuarto = TiposQuarto.obj)

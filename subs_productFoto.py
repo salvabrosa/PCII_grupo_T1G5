@@ -114,7 +114,8 @@ def productFoto(app,cname='',submenu=""):
             print("obj._foto>>>>>>",obj._foto)
         return render_template("productform.html", butshow=butshow, butedit=butedit,
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
-                        ulogin=session.get("user"),auto_number=cl.auto_number,
+                        ulogin=session.get("user"),tipou=session.get("tipouser"),
+                        auto_number=cl.auto_number,
                         img=img,
                         submenu=submenu)
     else:
