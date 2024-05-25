@@ -69,7 +69,7 @@ def register(cname=''):
 def getsubm():
     global submenu
     submenu = request.args.get("subm")
-    return render_template("index.html", ulogin=session.get("user"),submenu=submenu)
+    return render_template("index.html", ulogin=session.get("user"),submenu=submenu, tipou = session.get("tipouser"))
 
 @app.route("/gform/<cname>", methods=["post","get"])
 def gform(cname=''):
