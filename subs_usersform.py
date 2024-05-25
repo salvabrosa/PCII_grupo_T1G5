@@ -28,27 +28,29 @@ def usersform(cname='',submenu=""):
         option = request.args.get("option")
         if prev_option == 'insert' and option == 'save':
             if request.form[cl.att[0]] in Userlogin.lst:
-                user_existe = 1 
+                user_existe = 1
+                
             else:
                 strobj = request.form[cl.att[0]]
-            for i in range(1,len(cl.att)):
-                if request.form[cl.att[i]] == '' :
-                    falta_atributo = 1
-                    
-                else:
-
-                    if cl.att[i] == '_password':
-                        strobj += ";" + Userlogin.set_password(request.form[cl.att[i]])
+            if user_existe == 0:
+                for i in range(1,len(cl.att)):
+                    if request.form[cl.att[i]] == '' :
+                        falta_atributo = 1
+                        
                     else:
-                        strobj += ";" + request.form[cl.att[i]]
-            if falta_atributo == 0 and user_existe == 0:
-                obj = cl.from_string(strobj)
-                cl.insert(getattr(obj, cl.att[0]))
-            cl.last()
+    
+                        if cl.att[i] == '_password':
+                            strobj += ";" + Userlogin.set_password(request.form[cl.att[i]])
+                        else:
+                            strobj += ";" + request.form[cl.att[i]]
+                if falta_atributo == 0 and user_existe == 0:
+                    obj = cl.from_string(strobj)
+                    cl.insert(getattr(obj, cl.att[0]))
+                cl.last()
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
             # if auto_number = 1 the key stays the same
-            for i in range(1,len(cl.att)):
+            for i in range(1,len(cl.att)-1):
                 att = cl.att[i]
                 if request.form[att] == "":
                     falta_atributo = 1
@@ -58,6 +60,9 @@ def usersform(cname='',submenu=""):
                     setattr(obj, att, request.form[att])
             if falta_atributo == 0:
                 cl.update(getattr(obj, cl.att[0]))
+            #EDITAR O TIPO DE UTILIZADOR APENAS SE FOR ADMIN
+            if session.get("tipouser") == "admin":
+                setattr(obj, '_usergroup', request.form['_usergroup'])
         else:
             if option == "edit":
                 butshow = "disabled"

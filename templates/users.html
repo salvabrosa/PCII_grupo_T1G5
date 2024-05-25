@@ -24,14 +24,16 @@
         </div>
         {% endif %}
         
-        {% if tipou == "admin" %}
+        
         <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/users?option=edit'" class="button1">Edit</button>
+        {% if tipou == "admin" %}
         <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/users?option=delete'" class="button1">Delete</button>
         <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/users?option=insert'" class="button1">Insert</button>
+        {%endif%}
         <button id="save" type="submit" form="form" class = "button1" {{butedit}}>Save</button>
         <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/users?option=cancel'" class="button1">Cancel</button>
         <button id="exit" type="button" {{butshow}} onclick="window.location.href = '/users?option=exit'" class="button1">Exit</button>
-        {%endif%}
+        
         <br><br>
         
             <form id="form" action="/users?option=save" method="post">
@@ -42,6 +44,8 @@
                   {%else%}        
                       {% if prev_option == 'edit' and loop.index == 1 %}
                           <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/> 
+                      {%elif tipou != "admin" and loop.index == 9%}
+                      <input type="text" disabled id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/> 
                       {%else%}         
                       <input type="text" {{butedit}} id="{{key}}" name="{{key}}" value="{{obj[key]}}" size="30"/>
                       {%endif%}
