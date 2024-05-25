@@ -67,15 +67,8 @@ def reservaquartoform(cname='',submenu=""):
                 #         strobj += ";" + request.form[cl.att[i]]
                 
                 elif cl.att[i] == '_codigo_quarto':
-                    # ENCONTRAR UMA LISTA DE QUARTOS COM RESERVAQUARTOS TRUE
-                    lista_quartosreservados = []
-                    for quarto_obj in ReservaQuarto.find('True','_estado_reserva'):
-                        lista_quartosreservados.append(quarto_obj.codigo_quarto) 
                     if request.form[cl.att[i]] not in Quarto.lst:
                         quarto_notfound = 1
-                        break
-                    if request.form[cl.att[i]] in lista_quartosreservados:
-                        quarto_reservado = 1
                         break
                     else: 
                         strobj += ";" + request.form[cl.att[i]]
@@ -98,16 +91,26 @@ def reservaquartoform(cname='',submenu=""):
                 if request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
                     erro_datas = 1
                     break  
+                
             else:
+                
+                # FAZER COM QUE NAO SEJA POSSIVEL QUE UM QUARTO ESTEJA RESERVADO AO MESMO TEMPO POR 2 RESERVAS
+                listaobj_reservasdoquarto = ReservaQuarto.find(request.form['_codigo_quarto'],'_codigo_quarto')
+                for rq_obj in listaobj_reservasdoquarto:
+                    if rq_obj.checkin < datetime.date.fromisoformat(request.form['_checkin']) < rq_obj.checkout and rq_obj.checkin < datetime.date.fromisoformat(request.form['_checkout']) < rq_obj.checkout:
+                        quarto_reservado = 1
+                        break    
+                    
                 # ADICIONAR ESTADO DA RESERVA
                 if  datetime.date.fromisoformat(request.form['_checkout']) > datetime.date.today() and datetime.date.fromisoformat(request.form['_checkin']) < datetime.date.today() :
                     strobj += ";" + 'True'
                 else:
                     strobj += ";" + 'False'
                 
-                obj = cl.from_string(strobj)
-                cl.insert(getattr(obj, cl.att[0]))
-                cl.last()
+                if quarto_reservado == 0:
+                    obj = cl.from_string(strobj)
+                    cl.insert(getattr(obj, cl.att[0]))
+                    cl.last()
             
         elif prev_option == 'edit' and option == 'save':
             obj = cl.current()
