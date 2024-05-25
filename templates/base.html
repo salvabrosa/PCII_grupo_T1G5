@@ -16,44 +16,42 @@
                     <li><a class="button" href="/register/Userlogin?option=insert">Sign Up</a></li>  <!-- teste............jh -->
                     
                 {% else %}
-                    {% if tipou == "admin" %}
-                        <li><a class="button" href="/logoff">Logoff</a></li>
-                        <li><a class="button" href="/hoteis">Hoteis</a></li>
-                        
-                       
-                        <li><a class="button" href="/submenu?subm=Quarto">Quarto</a></li>
-                                             
-                        <li><a class="button" href="/users">User</a></li>
-                                                
-                        <li><a class="button" href="/reservaquarto">ReservaQuarto</a></li>
-                        
-                        <li><a class="button" href="/submenu?subm=Reserva">Reserva</a></li>    
-                        
-                        <li><a class="button" href="/reserva/mapa">Mapa reservas</a></li>
-                        
-                        <li><a class="button" style="color:lightblue">User: {{ulogin}} </a></li>
-                        
-                        <br><br>
-                        
-                        {% if submenu == "Quarto" %}
-                            <li><a class="button" href="/quartos?option=''&subm=Quarto">Quarto Form</a></li>
-                            <li><a class="button" href="/quartosT?option=''&subm=Quarto">Quarto Tabela</a></li>                        
-                            <li><a class="button" href="/tiposquartos?option=''&subm=Quarto">Tipos Quarto</a></li>
-                            
-                        {% endif %}
                     
-                        {% if submenu == "Reserva" %}
-                            <li><a class="button" href="/faturaform?option=''&subm=Reserva">Reserva line</a></li>
-                            <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
-                        {% endif %} 
-                        
-                        {% if submenu == "product" %}
-                            <li><a class="button" href="/gform/Product?subm=product">Product</a></li>
-                            <li><a class="button" href="/productform?subm=product">Product(foto)</a></li>
-                        {% endif %} 
+                    <li><a class="button" href="/logoff">Logoff</a></li>
                     
+                    <li><a class="button" href="/hoteis">Hoteis</a></li>
+                     
+                    <li><a class="button" href="/submenu?subm=Quarto">Quarto</a></li>
+                                         
+                    <li><a class="button" href="/users">User</a></li>
+                                        
+                    <li><a class="button" href="/reservaquarto">ReservaQuarto</a></li>
+                    
+                    <li><a class="button" href="/submenu?subm=Reserva">Reserva</a></li>    
+                    
+                    <li><a class="button" href="/reserva/mapa">Mapa reservas</a></li>
+                    
+                    <li><a class="button" style="color:lightblue">User: {{ulogin}} </a></li>
+                    
+                    <br><br>
+                    
+                    {% if submenu == "Quarto" %}
+                        <li><a class="button" href="/quartos?option=''&subm=Quarto">Quarto Form</a></li>
+                        <li><a class="button" href="/quartosT?option=''&subm=Quarto">Quarto Tabela</a></li>                        
+                        <li><a class="button" href="/tiposquartos?option=''&subm=Quarto">Tipos Quarto</a></li>
+                        
                     {% endif %}
+                
+                    {% if submenu == "Reserva" %}
+                        <li><a class="button" href="/faturaform?option=''&subm=Reserva">Reserva line</a></li>
+                        <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
+                    {% endif %} 
                     
+                    {% if submenu == "product" %}
+                        <li><a class="button" href="/gform/Product?subm=product">Product</a></li>
+                        <li><a class="button" href="/productform?subm=product">Product(foto)</a></li>
+                    {% endif %} 
+                                      
                 {% endif %}
             </ul>
         </nav>
