@@ -67,7 +67,6 @@ def reservaquartoform(cname='',submenu=""):
                 #         strobj += ";" + request.form[cl.att[i]]
                 
                 elif cl.att[i] == '_codigo_quarto':
-                    
                     # ENCONTRAR UMA LISTA DE QUARTOS COM RESERVAQUARTOS TRUE
                     lista_quartosreservados = []
                     for quarto_obj in ReservaQuarto.find('True','_estado_reserva'):
@@ -94,19 +93,17 @@ def reservaquartoform(cname='',submenu=""):
                     except ValueError:
                         erro_formato_datas = 1 
                         break
-                    
                 else:
                     strobj += ";" + request.form[cl.att[i]]
                 if request.form['_checkin'] >= request.form['_checkout'] and falta_atributo == 0:   
                     erro_datas = 1
-                    break
-                
+                    break  
             else:
                 # ADICIONAR ESTADO DA RESERVA
-                if  datetime.date.fromisoformat(request.form['_checkout']) > datetime.date.today():
+                if  datetime.date.fromisoformat(request.form['_checkout']) > datetime.date.today() and datetime.date.fromisoformat(request.form['_checkin']) < datetime.date.today() :
                     strobj += ";" + 'True'
-                elif  datetime.date.fromisoformat(request.form['_checkout']) < datetime.date.today():
-                    strobj += ";" + 'True'
+                else:
+                    strobj += ";" + 'False'
                 
                 obj = cl.from_string(strobj)
                 cl.insert(getattr(obj, cl.att[0]))
