@@ -1,4 +1,6 @@
 from classes.gclass import Gclass
+from classes.userlogin import Userlogin
+from classes.quarto import Quarto
 import datetime
 
 class ReservaQuarto(Gclass):
@@ -16,27 +18,34 @@ class ReservaQuarto(Gclass):
     def __init__(self, codigo, codigo_cliente, codigo_quarto, checkin, checkout, nadultos, ncriancas, pequenoalmoco, estado_reserva):
         super().__init__() 
         
-        if codigo == 'None':    
-            codes = ReservaQuarto.getatlist('_codigo')
-            if codes == []:
-                codigo = 'RQ' + str(1)
-            else:
-                codigo = 'RQ' + str(int(ReservaQuarto.getatlist('_codigo')[-1].replace('RQ','')) + 1)
+        if codigo_cliente in Userlogin.lst:
+            if codigo_quarto in Quarto.lst:
                 
-        self._codigo = codigo
-        self._codigo_cliente = codigo_cliente
-        self._codigo_quarto = codigo_quarto
-        self._checkin = datetime.date.fromisoformat(checkin)
-        self._checkout = datetime.date.fromisoformat(checkout)
-        self._nadultos = nadultos
-        self._ncriancas = ncriancas
-        self._pequenoalmoco = pequenoalmoco
-        
-        self._estado_reserva = estado_reserva
-        
-        ReservaQuarto.obj[codigo] = self
-        ReservaQuarto.lst.append(codigo)
-
+                if codigo == 'None':    
+                    codes = ReservaQuarto.getatlist('_codigo')
+                    if codes == []:
+                        codigo = 'RQ' + str(1)
+                    else:
+                        codigo = 'RQ' + str(int(ReservaQuarto.getatlist('_codigo')[-1].replace('RQ','')) + 1)
+                        
+                self._codigo = codigo
+                self._codigo_cliente = codigo_cliente
+                self._codigo_quarto = codigo_quarto
+                self._checkin = datetime.date.fromisoformat(checkin)
+                self._checkout = datetime.date.fromisoformat(checkout)
+                self._nadultos = nadultos
+                self._ncriancas = ncriancas
+                self._pequenoalmoco = pequenoalmoco
+                
+                self._estado_reserva = estado_reserva
+                
+                ReservaQuarto.obj[codigo] = self
+                ReservaQuarto.lst.append(codigo)
+            else:
+                print('Quarto ', codigo_quarto, ' not found')
+        else:
+            print('User ', codigo_cliente, ' not found')
+            
     @property 
     def codigo(self):
         return self._codigo
