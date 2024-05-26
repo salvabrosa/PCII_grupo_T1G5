@@ -177,13 +177,13 @@ class Reserva2Form(Gclass):
                 c=int(diaEvento.strftime("%w"))
 
                 
-                self.clientes.append(evento.customer_code)
+                self.clientes.append(evento.codigo_cliente)
 
                 self.linha = [""]*7
                 
                 dia = diaEvento
                 self.linha[c] = celulaform(l,c,dia,l)
-                self.linha[c].codeevent = evento.code 
+                self.linha[c].codeevent = evento.codigo 
                 self.linha[c].texto = self.text_to_horario(evento)
                 self.semanaTree.append(self.linha)
           

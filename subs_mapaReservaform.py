@@ -39,7 +39,7 @@ def mapaReservaform(app,cname='',submenu=""):
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
-        if option == "''":
+        if option == None:
             diahoraselected = datetime.today()
             
         
@@ -115,8 +115,7 @@ def mapaReservaform(app,cname='',submenu=""):
                         cname=cname, obj=obj,att=cl.att,header=cl.header,des=cl.des,
                         ulogin=session.get("user"),tipou=session.get("tipouser"), 
                         auto_number=cl.auto_number,
-                        objh=objh,selectedcell = diahoraselected,
-                        
+                        objh=objh,selectedcell = diahoraselected,                      
                         submenu=submenu)
     else:
         return render_template("index.html", ulogin=ulogin)
