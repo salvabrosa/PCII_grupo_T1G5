@@ -28,8 +28,6 @@
                         <li><a class="button" href="/reservaquarto">ReservaQuarto</a></li>
                         
                         <li><a class="button" href="/submenu?subm=Reserva">Reserva</a></li>    
-                        
-                        <li><a class="button" href="/reserva/mapa">Mapa reservas</a></li>
                                                 
                         <li><a class="button" style="color:lightblue">User: {{ulogin}} </a></li>
                         
@@ -43,8 +41,8 @@
                         {% endif %}
                     
                         {% if submenu == "Reserva" %}
-                            <li><a class="button" href="/faturaform?option=''&subm=Reserva">Reserva line</a></li>
-                            <li><a class="button" href="/order/mapa?option=''">Mapa encomendas</a></li>
+                            <li><a class="button" href="/faturaform?option=''&subm=Reserva">Faturas</a></li>
+                            <li><a class="button" href="/reserva/mapa?option=''">Mapa reservas</a></li>
                         {% endif %} 
                         
                         {% if submenu == "product" %}
