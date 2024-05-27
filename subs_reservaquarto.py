@@ -16,6 +16,7 @@ prev_option = ""
 def reservaquartoform(cname='',submenu=""):
     global prev_option
     ulogin=session.get("user")
+    tipou=session.get("tipouser")
     if (ulogin != None):
         cl = eval(cname)
         butshow = "enabled"

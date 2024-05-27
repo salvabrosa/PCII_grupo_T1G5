@@ -29,7 +29,8 @@ def mapaReservaform(app,cname='',submenu=""):
     
     cname = 'ReservaQuarto'
     ulogin=session.get("user")
-    if (ulogin != None):
+    tipou=session.get("tipouser")
+    if (ulogin != None) and tipou == "admin":
         cl = eval(cname)
         clh = eval("Reserva2Form")
         butshow = "enabled"

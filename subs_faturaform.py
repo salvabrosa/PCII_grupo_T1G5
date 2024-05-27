@@ -18,6 +18,7 @@ def faturaform(cname="",submenu=""):
     cnames = tlist[0]
     scname = tlist[1]   #+ "_" + tlist[2]         
     ulogin=session.get("user")
+    tipou=session.get("tipouser")
     user_notfound = 0
     falta_atributo = 0
     erro_formato_datas = 0
@@ -26,7 +27,7 @@ def faturaform(cname="",submenu=""):
     diferentes_codigos_cliente = 0
     reserva_mesma_fatura = 0
     datas_erradas = 0
-    if (ulogin != None):
+    if (ulogin != None) and tipou == "admin":
         cl = eval(cnames)
         sbl = eval(scname)
         butshow = "enabled"
