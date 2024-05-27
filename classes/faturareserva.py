@@ -27,8 +27,16 @@ class FaturaReserva(Gclass):
             if cod_reserva in ReservaQuarto.lst:
                 self._cod_fatura = cod_fatura
                 self._cod_reserva = cod_reserva
-                self._preco = preco
-        
+                
+                if preco == "None":
+                    noites = ReservaQuarto.obj[cod_reserva].noites
+                    preco_noite = float(Quarto.obj[ReservaQuarto.obj[cod_reserva].codigo_quarto].preco_noite)
+                    adiciona_pornoite = 0
+                    if ReservaQuarto.obj[cod_reserva].pequenoalmoco == "True":
+                        adiciona_pornoite = 15
+                    preco = noites * preco_noite + adiciona_pornoite * noites
+                self.preco = preco
+                
                 code = str(cod_fatura) + str(cod_reserva)
                 
                 FaturaReserva.obj[code] = self
@@ -47,3 +55,7 @@ class FaturaReserva(Gclass):
     @property 
     def preco(self):
         return self._preco
+    
+    @preco.setter 
+    def preco(self, preco):
+        self._preco = preco

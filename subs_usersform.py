@@ -18,7 +18,8 @@ prev_option = ""
 
 def usersform(cname='',submenu=""):
     global prev_option
-    ulogin=session.get("tipouser")
+    ulogin=session.get("user")
+    tipou=session.get("tipouser")
     falta_atributo = 0
     user_existe = 0
     if (ulogin != None):
@@ -26,6 +27,8 @@ def usersform(cname='',submenu=""):
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
+        if tipou != "admin":
+            cl.current(ulogin)
         if prev_option == 'insert' and option == 'save':
             if request.form[cl.att[0]] in Userlogin.lst:
                 user_existe = 1

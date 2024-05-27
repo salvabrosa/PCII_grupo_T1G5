@@ -117,7 +117,11 @@
                         <form id="formrow" action="/faturaform?option=saverow" method="post">
                         {% for key in attl %}
                             {% if loop.index > 1 %}
-                             <td><input type="text" id="{{key}}" name="{{key}}" value="" size="20"/></td>
+                                {%if loop.index == 3%}
+                                <td><input type="text" disabled id="{{key}}" name="{{key}}" value="" size="0"/></td>
+                                {%else%}
+                                 <td><input type="text" id="{{key}}" name="{{key}}" value="" size="20"/></td>
+                                {%endif%}
                             {% endif %}
                         {% endfor %}
                         <td><button id="save" type="submit" form="formrow" class = "button1" >Save</button>

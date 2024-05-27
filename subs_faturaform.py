@@ -111,7 +111,7 @@ def faturaform(cname="",submenu=""):
             elif option == "saverow":
                 obj = cl.current()
                 strobj = getattr(obj, cl.att[0])
-                for i in range(1,len(sbl.att)):
+                for i in range(1,len(sbl.att)-1):
                     if request.form[sbl.att[i]] == "" :
                         falta_atributo2 = 1
                         break
@@ -134,6 +134,10 @@ def faturaform(cname="",submenu=""):
                         strobj += ";" + request.form[sbl.att[i]]
                         
                 else:
+                    input('')
+                    print(strobj)
+                    input('')
+                    strobj +=';' + "None"
                     objl = sbl.from_string(strobj)
                     code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))
                     sbl.insert(code)

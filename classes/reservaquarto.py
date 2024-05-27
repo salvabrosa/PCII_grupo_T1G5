@@ -73,6 +73,9 @@ class ReservaQuarto(Gclass):
     @property 
     def estado_reserva(self):
         return self._estado_reserva
+    @property 
+    def noites(self):
+        return (self.checkout - self.checkin).days
     
     @checkin.setter
     def checkin(self, checkin):
