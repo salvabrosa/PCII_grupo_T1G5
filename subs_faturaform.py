@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: António Brito / Carlos Bragança
-(2024)
-#objective: subs_gform.py
 
-"""""
 import datetime
 from flask import Flask, render_template, request, session
 from classes.hotel import Hotel
@@ -134,9 +129,6 @@ def faturaform(cname="",submenu=""):
                         strobj += ";" + request.form[sbl.att[i]]
                         
                 else:
-                    input('')
-                    print(strobj)
-                    input('')
                     strobj +=';' + "None"
                     objl = sbl.from_string(strobj)
                     code = str(getattr(objl, sbl.att[0])) + str(getattr(objl, sbl.att[1]))

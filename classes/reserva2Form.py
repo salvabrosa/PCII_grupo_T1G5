@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """
-@author: António Brito / Carlos Bragança
-(2021)
-#objective: class HorarioForm
 
 """""
 #import datetime

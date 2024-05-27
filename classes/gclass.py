@@ -1,6 +1,4 @@
 """
-@author: António Brito / Carlos Bragança
-(2024) objective: Generic class
 """""
 # Generic Class
 import sys

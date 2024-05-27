@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: António Brito / Carlos Bragança
-(2024)
-#objective: subs_gform.py
 
-"""""
 from flask import Flask, render_template, request, session
 from werkzeug.utils import secure_filename
 import os

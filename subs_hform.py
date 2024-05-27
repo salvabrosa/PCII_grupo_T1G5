@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: António Brito / Carlos Bragança
-(2024)
-#objective: subs_hform.py
 
-"""""
 from classes.hotel import Hotel
 from classes.quarto import Quarto
 from classes.reservaquarto import ReservaQuarto

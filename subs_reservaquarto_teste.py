@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: António Brito / Carlos Bragança
-(2024)
-#objective: subs_gform.py
 
-"""""
 import datetime
 
 from flask import Flask, render_template, request, session
