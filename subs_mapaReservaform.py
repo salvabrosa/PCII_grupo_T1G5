@@ -19,6 +19,7 @@ from datetime import timedelta
 from datetime import datetime
 
 prev_option = ""
+dihoraselected = ""
 
 def gerah(clh):
     clh.reset()
@@ -39,7 +40,7 @@ def mapaReservaform(app,cname='',submenu=""):
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
-        if option == None:
+        if option == "''":
             diahoraselected = datetime.today()
             
         
